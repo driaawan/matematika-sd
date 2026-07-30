@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Portal Rangkuman Pintar Kelas 4, 5 & 6</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           1. RESET & VARIABLES
+           ========================================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-blue: #2563EB;
+            --primary-dark: #1E3A8A;
+            --secondary-teal: #0D9488;
+            --teal-light: #CCFBF1;
+            --amber-yellow: #D97706;
+            --amber-light: #FEF3C7;
+            --coral-red: #DC2626;
+            --coral-light: #FEE2E2;
+            --slate-dark: #1E293B;
+            --slate-gray: #64748B;
+            --bg-canvas: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--slate-dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        /* =========================================================
+           2. HEADER & HERO SECTION
+           ========================================================= */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 60px 20px 80px 20px;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+            position: relative;
+        }
+
+        .hero-badge {
+            background-color: var(--amber-yellow);
+            color: #FFFFFF;
+            font-family: 'Fredoka', cursive, sans-serif;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 680px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        /* =========================================================
+           3. MAIN CONTAINER & CLASS SECTIONS
+           ========================================================= */
+        .container {
+            max-width: 1080px;
+            margin: -40px auto 0 auto;
+            padding: 0 20px;
+        }
+
+        .class-section {
+            background-color: #FFFFFF;
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 2px solid #E2E8F0;
+        }
+
+        .class-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 3px dashed #F1F5F9;
+            padding-bottom: 12px;
+        }
+
+        .class-icon {
+            font-size: 28px;
+            background: var(--teal-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .class-title {
+            font-size: 24px;
+            color: var(--primary-dark);
+        }
+
+        /* Grid Cards */
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .chapter-card {
+            border: 2px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 12px 20px rgba(37, 99, 235, 0.12);
+        }
+
+        .chapter-tag {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--secondary-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .chapter-name {
+            font-size: 18px;
+            color: var(--slate-dark);
+            margin-bottom: 12px;
+        }
+
+        .chapter-desc {
+            font-size: 13px;
+            color: var(--slate-gray);
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .btn-open {
+            background-color: var(--primary-blue);
+            color: #FFFFFF;
+            text-decoration: none;
+            text-align: center;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 14px;
+            display: inline-block;
+            transition: background 0.2s ease;
+        }
+
+        .btn-open:hover {
+            background-color: #1D4ED8;
+        }
+
+        .btn-disabled {
+            background-color: #E2E8F0;
+            color: #94A3B8;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           4. FOOTER
+           ========================================================= */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: var(--slate-gray);
+            font-weight: 600;
+        }
+
+        footer span {
+            color: var(--coral-red);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <span class="hero-badge">📚 Kurikulum Merdeka</span>
+        <h1>Boklet Matematika SD Pintar</h1>
+        <p>Rangkuman visual, seru, dan mudah dipahami berbentuk kartu A5 Landscape yang siap dibaca maupun dicetak!</p>
+    </header>
+
+    <!-- MAIN PORTAL CONTAINER -->
+    <main class="container">
+
+        <!-- KELAS 4 SD SECTION -->
+        <section class="class-section">
+            <div class="class-header">
+                <div class="class-icon">🎒</div>
+                <h2 class="class-title">Kelas 4 SD</h2>
+            </div>
+            
+            <div class="chapter-grid">
+                <!-- BAB 1 CARD (AKTIF) -->
+                <div class="chapter-card">
+                    <div>
+                        <div class="chapter-tag">BAB 1 • TERSEDIA</div>
+                        <h3 class="chapter-name">Bilangan Cacah s.d. 100.000</h3>
+                        <p class="chapter-desc">Nilai tempat, membaca/menulis angka, perbandingan, hingga operasi porogapit cilik.</p>
+                    </div>
+                    <!-- Navigasi mengarah ke file HTML Bab 1 -->
+                    <a href="kelas4-bab1.html" class="btn-open">🚀 Buka Boklet Bab 1</a>
+                </div>
+
+                <!-- BAB 2 CARD (SEGERA HADIR) -->
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 2 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">Pecahan Senilai & Desimal</h3>
+                        <p class="chapter-desc">Konsep potongan roti, menyederhanakan pecahan, desimal, dan persen.</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+
+                <!-- BAB 3 CARD (SEGERA HADIR) -->
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 3 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">Sudut & Bangun Datar</h3>
+                        <p class="chapter-desc">Mengenal jenis sudut, busur derajat, keliling, dan luas persegi/segitiga.</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 5 SD SECTION -->
+        <section class="class-section">
+            <div class="class-header">
+                <div class="class-icon" style="background: var(--amber-light);">📐</div>
+                <h2 class="class-title">Kelas 5 SD</h2>
+            </div>
+
+            <div class="chapter-grid">
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 1 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">KPK & FPB</h3>
+                        <p class="chapter-desc">Hitung jadwal bersamaan (KPK) dan membagi paket jajan sama banyak (FPB).</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 3 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">Rasio & Skala Peta</h3>
+                        <p class="chapter-desc">Menghitung jarak sebenarnya pada denah rumah dan resep es sirup.</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- KELAS 6 SD SECTION -->
+        <section class="class-section">
+            <div class="class-header">
+                <div class="class-icon" style="background: var(--coral-light);">🌟</div>
+                <h2 class="class-title">Kelas 6 SD</h2>
+            </div>
+
+            <div class="chapter-grid">
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 1 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">Bilangan Bulat Negatif</h3>
+                        <p class="chapter-desc">Petualangan di bawah nol: suhu freezer, kedalaman laut, dan garis bilangan.</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+
+                <div class="chapter-card" style="opacity: 0.7;">
+                    <div>
+                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 2 • SEGERA HADIR</div>
+                        <h3 class="chapter-name">Keliling & Luas Lingkaran</h3>
+                        <p class="chapter-desc">Rumus jari-jari, diameter, phi (22/7 & 3,14) untuk roda dan pizza.</p>
+                    </div>
+                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Dibuat dengan <span>❤️</span> untuk Pendidikan Anak Indonesia • Siap Cetak PDF & Web Interaktif</p>
+    </footer>
+
+</body>
+</html>
