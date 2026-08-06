@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 6 Bab 3</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Mengenal Prisma Segitiga &amp; Ciri-Cirinya</div>
+        
+        <div class="info-box">
+            <div class="box-title">⛺ Teori Ringkas &amp; Analogi Tenda Pramuka</div>
+            <p>Prisma Segitiga adalah bangun ruang yang dibatasi oleh dua bidang alas dan atap berbentuk segitiga yang sejajar dan identik (kongruen), serta sisi-sisi tegak berbentuk persegi panjang.</p>
+            <p><b>Analogi:</b> Bayangkan bentuk tenda pramuka atau potongan keju segitiga!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Sifat-Sifat Utama Prisma Segitiga</div>
+            <p style="text-align: left;">• Jumlah Sisi = 5 buah (2 sisi segitiga + 3 sisi tegak)</p>
+            <p style="text-align: left;">• Jumlah Rusuk = 9 buah</p>
+            <p style="text-align: left;">• Jumlah Titik Sudut = 6 buah</p>
+            <p>$$ \text{Jumlah Sisi Prisma-n} = n + 2 \quad \mid \quad \text{Jumlah Rusuk} = 3 \times n $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah kerangka tenda berbentuk prisma segitiga memiliki alas segitiga sama sisi dengan panjang sisi $60\text{ cm}$ dan panjang tenda $150\text{ cm}$. Berapakah total panjang kawat besi yang dibutuhkan untuk membuat kerangka tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Kerangka terdiri dari 6 rusuk alas/atap segitiga ($6 \times 60\text{ cm}$) dan 3 rusuk tegak/panjang tenda ($3 \times 150\text{ cm}$).</li>
+                <li>Total Panjang Kawat = $(6 \times 60) + (3 \times 150) = 360 + 450 = \mathbf{810\text{ cm}}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Nama prisma <b>SELALU</b> ditentukan oleh bentuk alasnya! Jika alasnya berbentuk segitiga, dinamakan Prisma Segitiga. Jika alasnya berbentuk segi lima, dinamakan Prisma Segi Lima.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Volume &amp; Luas Permukaan Prisma Segitiga</div>
+
+        <div class="info-box">
+            <div class="box-title">📦 Teori Ringkas Volume Prisma</div>
+            <p>Volume prisma dihitung dengan cara mengalikan Luas Alas ($L_a$) dengan Tinggi Prisma ($t_p$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume &amp; Luas Permukaan Prisma</div>
+            <p>$$ V = L_a \times t_p = \left( \frac{1}{2} \times a \times t_s \right) \times t_p $$</p>
+            <p>$$ L_p = (2 \times L_a) + (\text{Keliling Alas} \times t_p) $$</p>
+            <p style="font-size: 8.5px;">Keterangan: $a = \text{alas segitiga}$, $t_s = \text{tinggi segitiga}$, $t_p = \text{tinggi prisma}$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah prisma segitiga siku-siku memiliki ukuran alas segitiga $6\text{ cm}$ dan $8\text{ cm}$. Jika tinggi prisma adalah $15\text{ cm}$, hitunglah volume prisma tersebut!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Hitung Luas Alas Segitiga:
+                    <p>$$ L_a = \frac{1}{2} \times 6 \times 8 = 24\text{ cm}^2 $$</p>
+                </li>
+                <li>Hitung Volume Prisma:
+                    <p>$$ V = 24 \times 15 = \mathbf{360\text{ cm}^3} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Jangan tertukar antara <b>Tinggi Segitiga Alas ($t_s$)</b> dengan <b>Tinggi Prisma ($t_p$)</b>! $t_s$ menempel pada alas segitiga, sedangkan $t_p$ adalah jarak antara alas dan atap.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Tabung (Silinder)</div>
+
+        <div class="info-box">
+            <div class="box-title">🥫 Teori Ringkas &amp; Analogi Kaleng Susu</div>
+            <p>Tabung adalah bangun ruang 3 dimensi yang dibatasi oleh dua lingkaran identik sebagai alas dan tutup, serta sebuah selimut lengkung berbentuk persegi panjang.</p>
+            <p><b>Analogi:</b> Bayangkan kaleng susu, drum air, atau pipa paralon!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume &amp; Luas Permukaan Tabung</div>
+            <p>$$ V = \pi \times r^2 \times t $$</p>
+            <p>$$ L_p = 2 \times \pi \times r \times (r + t) $$</p>
+            <p>$$ L_{\text{selimut}} = 2 \times \pi \times r \times t $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah kaleng biskuit berbentuk tabung memiliki jari-jari alas $7\text{ cm}$ dan tinggi $20\text{ cm}$. Berapakah volume biskuit yang dapat ditampung kaleng tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Diketahui $r = 7\text{ cm}$ (kelipatan 7) dan $t = 20\text{ cm}$.</li>
+                <li>Masukkan ke rumus volume tabung:
+                    <p>$$ V = \frac{22}{7} \times 7 \times 7 \times 20 = 22 \times 7 \times 20 = \mathbf{3.080\text{ cm}^3} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Tabung sebenarnya adalah bentuk khusus dari prisma yang alasnya berbentuk LINGKARAN! Rumus dasarnya tetap sama: $\text{Luas Alas} \times \text{Tinggi}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Limas Segiempat &amp; Limas Segitiga</div>
+
+        <div class="info-box">
+            <div class="box-title">🏛️ Teori Ringkas &amp; Analogi Piramida Mesir</div>
+            <p>Limas adalah bangun ruang yang alasnya berbentuk segi-n dan sisi-sisi tegaknya berbentuk segitiga yang bertemu di satu titik puncak.</p>
+            <p><b>Analogi:</b> Pikirkan bangunan Piramida di Mesir!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume Limas</div>
+            <p style="font-size: 8.5px;">Volume Limas selalu bernilai $\frac{1}{3}$ dari volume prisma yang alas dan tingginya sama!</p>
+            <p>$$ V_{\text{limas}} = \frac{1}{3} \times L_a \times t $$</p>
+            <p style="text-align: left; font-size: 8.5px;">• Jika alas persegi/persegi panjang $\rightarrow L_a = p \times l$.</p>
+            <p style="text-align: left; font-size: 8.5px;">• Jika alas segitiga $\rightarrow L_a = \frac{1}{2} \times a \times t_s$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah souvenir berbentuk limas segiempat memiliki alas persegi dengan panjang sisi $10\text{ cm}$ dan tinggi limas $12\text{ cm}$. Berapakah volume souvenir tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Hitung Luas Alas (Persegi): $L_a = 10 \times 10 = 100\text{ cm}^2$.</li>
+                <li>Hitung Volume Limas:
+                    <p>$$ V = \frac{1}{3} \times 100 \times 12 = 100 \times 4 = \mathbf{400\text{ cm}^3} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Ingatlah kata kunci: Bangun yang memiliki <b>TITIK PUNCAK LANCIP</b> (seperti Limas dan Kerucut) rumusnya <b>SELALU dikali $\frac{1}{3}$</b>!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Kerucut</div>
+
+        <div class="info-box">
+            <div class="box-title">🍦 Teori Ringkas &amp; Analogi Topi Ulang Tahun</div>
+            <p>Kerucut adalah bangun ruang limas yang alasnya berbentuk lingkaran. Kerucut memiliki 2 sisi (1 alas lingkaran dan 1 selimut lengkung), 1 rusuk lengkung, serta 1 titik puncak.</p>
+            <p><b>Analogi:</b> Bayangkan caping petani, cone es krim, atau topi ulang tahun!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume &amp; Luas Permukaan Kerucut</div>
+            <p>$$ V = \frac{1}{3} \times \pi \times r^2 \times t $$</p>
+            <p>$$ L_p = \pi \times r \times (r + s) $$</p>
+            <p style="font-size: 8.5px;">Keterangan: $r = \text{jari-jari}$, $t = \text{tinggi kerucut}$, $s = \text{garis pelukis } (\sqrt{r^2 + t^2})$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah tumpeng nasi kuning berbentuk kerucut memiliki jari-jari alas $14\text{ cm}$ dan tinggi $30\text{ cm}$. Berapakah volume nasi tumpeng tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Diketahui $r = 14\text{ cm}$ dan $t = 30\text{ cm}$.</li>
+                <li>Hitung Volume:
+                    <p>$$ V = \frac{1}{3} \times \frac{22}{7} \times 14 \times 14 \times 30 $$</p>
+                    <p>$$ V = \frac{1}{3} \times 22 \times 2 \times 14 \times 30 = 616 \times 10 = \mathbf{6.160\text{ cm}^3} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Garis Pelukis ($s$) <b>BUKAN</b> Tinggi Kerucut ($t$)! Garis pelukis adalah sisi miring kerucut, sedangkan tinggi adalah garis tegak lurus dari puncak ke pusat alas.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Bola</div>
+
+        <div class="info-box">
+            <div class="box-title">⚽ Teori Ringkas &amp; Analogi Bola Sepak</div>
+            <p>Bola adalah bangun ruang 3 dimensi yang dibatasi oleh satu bidang lengkung. Bola tidak memiliki rusuk dan tidak memiliki titik sudut!</p>
+            <p><b>Analogi:</b> Bayangkan bola sepak, kelereng, atau buah jeruk manis!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume &amp; Luas Permukaan Bola</div>
+            <p>$$ V = \frac{4}{3} \times \pi \times r^3 $$</p>
+            <p>$$ L_p = 4 \times \pi \times r^2 $$</p>
+            <p>$$ V_{\text{setengah bola padat}} = \frac{2}{3} \times \pi \times r^3 $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah volume dan luas permukaan bola mainan yang memiliki jari-jari $21\text{ cm}$!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Volume Bola:
+                    <p>$$ V = \frac{4}{3} \times \frac{22}{7} \times 21 \times 21 \times 21 = 88 \times 441 = \mathbf{38.808\text{ cm}^3} $$</p>
+                </li>
+                <li>Luas Permukaan Bola:
+                    <p>$$ L_p = 4 \times \frac{22}{7} \times 21 \times 21 = 88 \times 63 = \mathbf{5.544\text{ cm}^2} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Perhatikan pangkat pada rumus bola! Untuk Luas Permukaan menggunakan <b>$r^2$</b>, sedangkan untuk Volume menggunakan <b>$r^3$ ($r \times r \times r$)</b>.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Bangun Ruang Lanjutan</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Bangun ruang yang memiliki alas dan atap lingkaran yang sama besar adalah...</p>
+            <p style="padding-left: 10px;">a. Kerucut &nbsp;&nbsp;&nbsp; b. Tabung &nbsp;&nbsp;&nbsp; c. Bola &nbsp;&nbsp;&nbsp; d. Limas</p>
+            <p>2. Sebuah tabung berdiameter $14\text{ cm}$ dan tinggi $10\text{ cm}$. Volume tabung tersebut adalah...</p>
+            <p>3. Hitunglah volume limas segiempat jika luas alasnya $45\text{ cm}^2$ dan tingginya $12\text{ cm}$!</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Sebuah tempat penampungan air gabungan terdiri dari tabung di bagian bawah dan kerucut di bagian atas. Jari-jari alas tabung dan kerucut sama, yaitu $7\text{ cm}$. Tinggi tabung adalah $20\text{ cm}$ dan tinggi kerucut adalah $9\text{ cm}$. Berapakah total volume air maksimum yang dapat ditampung wadah tersebut?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>1. Jawaban Soal Mandiri:</b></p>
+            <p>• Bangun dengan alas &amp; atap lingkaran identik adalah <b>Tabung</b> (Jawaban b).</p>
+            <p>• $r = 7\text{ cm} \rightarrow V = \frac{22}{7} \times 7 \times 7 \times 10 = \mathbf{1.540\text{ cm}^3}$.</p>
+            <p>• $V = \frac{1}{3} \times 45 \times 12 = 45 \times 4 = \mathbf{180\text{ cm}^3}$.</p>
+            <p><b>2. Jawaban Soal HOTS:</b></p>
+            <p>• Volume Tabung = $\frac{22}{7} \times 7 \times 7 \times 20 = 3.080\text{ cm}^3$.</p>
+            <p>• Volume Kerucut = $\frac{1}{3} \times \frac{22}{7} \times 7 \times 7 \times 9 = 22 \times 7 \times 3 = 462\text{ cm}^3$.</p>
+            <p>• Total Volume = $3.080 + 462 = \mathbf{3.542\text{ cm}^3}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>LUAR BIASA!</b> Kamu telah berhasil menguasai materi Bangun Ruang Lanjutan Kelas 6 SD. Jangan lupa simpan berkas ini sebagai <code>kelas6-bab3.html</code> dan hubungkan ke portal utama kamu ya[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
