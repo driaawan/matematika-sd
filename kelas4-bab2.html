@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 4 Bab 2</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Bebas Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Konsep Dasar Pecahan (Pembilang &amp; Penyebut)</div>
+        
+        <div class="info-box">
+            <div class="box-title">🍕 Teori Ringkas &amp; Analogi Pizza</div>
+            <p>Bayangkan kamu memesan 1 pan pizza lezat yang dipotong menjadi 4 bagian sama besar. Jika kamu memakan 1 potong, artinya kamu memakan 1 dari 4 bagian pizza tersebut.</p>
+            <p>Dalam matematika, bagian yang kamu makan ditulis sebagai pecahan: $\frac{1}{4}$.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Struktur Bagian Pecahan</div>
+            <p>$$ \text{Pecahan} = \frac{a}{b} = \frac{\text{Pembilang}}{\text{Penyebut}} $$</p>
+            <p style="text-align: left;">• <b>Pembilang ($a$):</b> Jumlah bagian yang diambil/diarsir/dimakan (posisi di atas).</p>
+            <p style="text-align: left;">• <b>Penyebut ($b$):</b> Total seluruh potongan yang sama besar (posisi di bawah, $b \neq 0$).</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah cokelat batang dibagi menjadi 8 bagian sama besar. Budi memakan 3 bagian cokelat tersebut. Tuliskan bentuk pecahan cokelat yang dimakan Budi dan sebutkan pembilangnya!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Banyak bagian yang dimakan = 3 (Pembilang).</li>
+                <li>Total seluruh potongan cokelat = 8 (Penyebut).</li>
+                <li>Bentuk pecahan = $\frac{3}{8}$.</li>
+                <li>Pembilang dari pecahan $\frac{3}{8}$ adalah angka 3.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Potongan harus <b>SAMA BESAR</b>! Jika sebuah benda dibagi menjadi potongan yang tidak sama ukuran, maka bagian tersebut <b>TIDAK BISA</b> dinyatakan dalam bentuk pecahan baku.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Mengenal &amp; Menentukan Pecahan Senilai</div>
+
+        <div class="info-box">
+            <div class="box-title">🎂 Teori Ringkas &amp; Analogi Kue</div>
+            <p>Dua pecahan dikatakan <b>SENILAI</b> jika nilainya sama besar, meskipun angka pembilang dan penyebutnya berbeda.</p>
+            <p><b>Analogi:</b> Memakan 1 dari 2 potong kue ($\frac{1}{2}$) nilainya <b>SAMA BANYAK</b> dengan memakan 2 dari 4 potong kue ($\frac{2}{4}$), atau 4 dari 8 potong kue ($\frac{4}{8}$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Cara Mencari Pecahan Senilai</div>
+            <p>Kalikan atau bagilah pembilang dan penyebut dengan <b>ANGKA YANG SAMA</b> (bukan nol).</p>
+            <p>$$ \frac{a}{b} = \frac{a \times m}{b \times m} \quad \text{atau} \quad \frac{a}{b} = \frac{a \div n}{b \div n} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Tentukan 2 pecahan yang senilai dengan $\frac{2}{3}$!</p>
+            <p><b>Pembahasan:</b></p>
+            <p>• Perkalian dengan angka 2: $$ \frac{2 \times 2}{3 \times 2} = \frac{4}{6} $$</p>
+            <p>• Perkalian dengan angka 3: $$ \frac{2 \times 3}{3 \times 3} = \frac{6}{9} $$</p>
+            <p>Jadi, pecahan yang senilai dengan $\frac{2}{3}$ adalah $\frac{4}{6}$ dan $\frac{6}{9}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT (UJI SILANG)</div>
+            <p>Untuk mengecek apakah dua pecahan senilai, lakukan perkalian silang!</p>
+            <p>Contoh: Apakah $\frac{2}{3}$ senilai dengan $\frac{4}{6}$?</p>
+            <p>Hitung: $(2 \times 6) = 12$ dan $(3 \times 4) = 12$. Karena hasilnya <b>SAMA</b> ($12 = 12$), maka kedua pecahan <b>SENILAI</b>!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Menyederhanakan Pecahan ke Bentuk Paling Sederhana</div>
+
+        <div class="info-box">
+            <div class="box-title">✂️ Teori Ringkas &amp; Analogi</div>
+            <p>Menyederhanakan pecahan artinya mengubah pecahan menjadi pecahan senilai yang memiliki angka pembilang dan penyebut <b>PALING TERKECIL</b>, sehingga tidak bisa dibagi lagi dengan angka yang sama (selain 1).</p>
+            <p><b>Analogi:</b> Memangkas dahan pohon agar bentuknya lebih ringkas tanpa mengubah pohon itu sendiri.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Menyederhanakan Pecahan</div>
+            <p>Bagi pembilang dan penyebut menggunakan Pembagi Bersama (FPB) sampai tidak bisa dibagi lagi.</p>
+            <p>$$ \frac{\text{Pembilang} \div \text{FPB}}{\text{Penyebut} \div \text{FPB}} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sederhanakan pecahan $\frac{12}{18}$ ke bentuk paling sederhana!</p>
+            <p><b>Pembahasan Cara Bertahap:</b></p>
+            <ol>
+                <li>Bagi dengan angka 2: $$ \frac{12 \div 2}{18 \div 2} = \frac{6}{9} $$</li>
+                <li>Angka 6 dan 9 masih bisa dibagi 3: $$ \frac{6 \div 3}{9 \div 3} = \frac{2}{3} $$</li>
+                <li>Pecahan $\frac{2}{3}$ sudah tidak bisa dibagi lagi. Jadi, bentuk sederhananya adalah $\frac{2}{3}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Jangan berhenti membagi sebelum pembilang dan penyebut benar-benar prima relatif!</p>
+            <p>Contoh: $\frac{12}{18}$ diubah menjadi $\frac{6}{9}$ itu <b>BELUM SELESAI</b>, karena $\frac{6}{9}$ masih bisa dibagi 3 menjadi $\frac{2}{3}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Membandingkan &amp; Mengurutkan Pecahan</div>
+
+        <div class="info-box">
+            <div class="box-title">⚖️ Teori Ringkas</div>
+            <p>• <b>Penyebut Sama:</b> Cukup lihat pembilangnya! Pembilang lebih besar = Nilai pecahan lebih besar.</p>
+            <p>• <b>Penyebut Beda:</b> Samakan penyebutnya terlebih dahulu (menggunakan KPK atau perkalian silang), baru bandingkan pembilangnya.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Metode Perkalian Silang (Untuk 2 Pecahan)</div>
+            <p>$$ \frac{a}{b} \quad \text{VS} \quad \frac{c}{d} \implies (a \times d) \quad \text{VS} \quad (b \times c) $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Bandingkan pecahan $\frac{3}{4}$ dan $\frac{2}{3}$, manakah yang lebih besar?</p>
+            <p><b>Pembahasan (Perkalian Silang):</b></p>
+            <ol>
+                <li>Kalikan pembilang pertama dengan penyebut kedua: $3 \times 3 = 9$.</li>
+                <li>Kalikan pembilang kedua dengan penyebut pertama: $2 \times 4 = 8$.</li>
+                <li>Bandingkan hasilnya: $9 &gt; 8$.</li>
+                <li>Maka, $\frac{3}{4} &gt; \frac{2}{3}$ (Pecahan $\frac{3}{4}$ lebih besar dari $\frac{2}{3}$).</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT (LOGIKA PENYEBUT)</div>
+            <p>Jika pembilangnya <b>SAMA</b> (contoh: $\frac{1}{3}$ vs $\frac{1}{8}$), maka penyebut yang angkanya <b>LEBIH KECIL</b> justru nilainya <b>LEBIH BESAR</b>!</p>
+            <p>Satu kue dibagi 3 orang ($\frac{1}{3}$) dapat bagian lebih besar dibanding dibagi 8 orang ($\frac{1}{8}$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Mengenal Bilangan Desimal (Persepuluhan &amp; Persatusan)</div>
+
+        <div class="info-box">
+            <div class="box-title">🔢 Teori Ringkas &amp; Nilai Tempat Desimal</div>
+            <p>Pecahan desimal adalah bentuk lain dari pecahan dengan penyebut khusus seperti 10, 100, 1.000, dst., yang ditulis menggunakan tanda koma (,).</p>
+            <p>• 1 angka di belakang koma = Persepuluhan ($\frac{1}{10} = 0,1$)</p>
+            <p>• 2 angka di belakang koma = Persatusan ($\frac{1}{100} = 0,01$)</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Hubungan Pecahan Biasa &amp; Desimal</div>
+            <p>$$ \frac{5}{10} = 0,5 \quad \mid \quad \frac{25}{100} = 0,25 \quad \mid \quad \frac{7}{100} = 0,07 $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ubahlah pecahan $\frac{3}{5}$ menjadi bentuk pecahan desimal!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah penyebut 5 menjadi 10 (kalikan dengan 2): $$ \frac{3 \times 2}{5 \times 2} = \frac{6}{10} $$</li>
+                <li>Pecahan $\frac{6}{10}$ memiliki 1 nol pada penyebut, maka ada 1 angka di belakang koma.</li>
+                <li>Bentuk desimal dari $\frac{6}{10}$ adalah <b>0,6</b>.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Hati-hati menempatkan angka nol! Pecahan $\frac{7}{100}$ nilainya adalah <b>0,07</b> (bukan 0,7). Tanda 0,7 nilainya adalah $\frac{7}{10}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Mengenal Persen (%) &amp; Mengubah Bentuk Pecahan</div>
+
+        <div class="info-box">
+            <div class="box-title">🏷️ Teori Ringkas &amp; Analogi Diskon</div>
+            <p>Persen artinya "Per Seratus" dan dilambangkan dengan simbol %.</p>
+            <p><b>Analogi:</b> Jika kamu dapat diskon 20% saat membeli baju, artinya kamu mendapatkan potongan harga sebesar Rp20 dari setiap Rp100 harga barang tersebut.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Hubungan Pecahan, Desimal, &amp; Persen</div>
+            <p>$$ n\% = \frac{n}{100} $$</p>
+            <p>$$ \text{Contoh: } 50\% = \frac{50}{100} = \frac{1}{2} = 0,50 $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Nyatakan pecahan $\frac{3}{4}$ ke dalam bentuk persen (%)!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah penyebut menjadi 100 (kalikan 4 dengan 25): $$ \frac{3 \times 25}{4 \times 25} = \frac{75}{100} $$</li>
+                <li>Karena penyebutnya sudah 100, langsung ubah ke simbol %: $$ \frac{75}{100} = 75\% $$</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TABEL KONVERSI HAFALAN CEPAT</div>
+            <p>• $\frac{1}{2} = 0,5 = 50\%$</p>
+            <p>• $\frac{1}{4} = 0,25 = 25\%$</p>
+            <p>• $\frac{3}{4} = 0,75 = 75\%$</p>
+            <p>• $\frac{1}{5} = 0,2 = 20\%$</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Pecahan Senilai &amp; Desimal Dasar</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Bentuk paling sederhana dari pecahan $\frac{15}{25}$ adalah...</p>
+            <p style="padding-left: 10px;">a. $\frac{3}{5}$ &nbsp;&nbsp;&nbsp; b. $\frac{5}{3}$ &nbsp;&nbsp;&nbsp; c. $\frac{1}{5}$ &nbsp;&nbsp;&nbsp; d. $\frac{3}{25}$</p>
+            <p>2. Bentuk desimal dari pecahan $\frac{3}{100}$ adalah...</p>
+            <p>3. Urutkan pecahan berikut dari yang terkecil: $\frac{1}{2}, \frac{1}{4}, \frac{3}{4}$.</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Ibu membawa kue tar. Siti mendapatkan 25% bagian kue, Ani mendapatkan 0,3 bagian kue, dan Budi mendapatkan $\frac{2}{5}$ bagian kue. Siapakah yang mendapatkan bagian kue paling banyak?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>Jawaban Soal Mandiri:</b></p>
+            <p>1. $\frac{15}{25}$ (masing-masing dibagi 5) = <b>a. $\frac{3}{5}$</b>.</p>
+            <p>2. $\frac{3}{100} = \mathbf{0,03}$.</p>
+            <p>3. Urutan dari terkecil: $\mathbf{\frac{1}{4} (0,25), \frac{1}{2} (0,50), \frac{3}{4} (0,75)}$.</p>
+            <p><b>Jawaban Soal HOTS:</b></p>
+            <p>Samakan semua ke bentuk desimal:</p>
+            <p>• Siti = $25\% = 0,25$</p>
+            <p>• Ani = $0,30$</p>
+            <p>• Budi = $\frac{2}{5} = \frac{4}{10} = 0,40$</p>
+            <p>Bandingkan: $0,40 &gt; 0,30 &gt; 0,25$. Maka, <b>BUDI</b> mendapatkan kue paling banyak!</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>HEBAT!</b> Kamu telah menguasai Bab 2 Pecahan Senilai &amp; Desimal Dasar. Jangan lupa simpan berkas ini dan tautkan ke portal utama `index.html` kamu ya!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+  
