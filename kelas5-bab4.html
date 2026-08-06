@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 5 Bab 4</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Sangat Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Mengenal Ciri-Ciri Kubus</div>
+        
+        <div class="info-box">
+            <div class="box-title">📦 Teori Ringkas &amp; Analogi Dadu</div>
+            <p>Kubus adalah bangun ruang 3 dimensi yang dibatasi oleh 6 buah bidang sisi berbentuk persegi yang kongruen (sama besar dan bentuknya).</p>
+            <p><b>Analogi:</b> Pikirkan sebuah dadu permainan atau kotak kado berbentuk kubus presisi!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Sifat-Sifat Utama Kubus</div>
+            <p style="text-align: left;">• Jumlah Sisi = 6 buah (semuanya berbentuk persegi identik)</p>
+            <p style="text-align: left;">• Jumlah Rusuk = 12 buah (semuanya sama panjang)</p>
+            <p style="text-align: left;">• Jumlah Titik Sudut = 8 buah</p>
+            <p>$$ \text{Panjang Seluruh Rusuk} = 12 \times s $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Andi membuat kerangka kubus dari kawat dengan panjang rusuk $8\text{ cm}$. Berapa cm panjang kawat minimum yang dibutuhkan Andi?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Diketahui panjang rusuk ($s$) = $8\text{ cm}$.</li>
+                <li>Jumlah rusuk kubus = 12.</li>
+                <li>Hitung total kawat:
+                    <p>$$ \text{Total Kawat} = 12 \times 8 = \mathbf{96\text{ cm}} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Kubus memiliki rusuk yang <b>SELALU SAMA PANJANG</b>. Jika ada bangun kotak yang panjang rusuknya berbeda, itu adalah <b>BALOK</b>, bukan kubus!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Mengenal Ciri-Ciri Balok</div>
+
+        <div class="info-box">
+            <div class="box-title">🧱 Teori Ringkas &amp; Analogi Batu Bata</div>
+            <p>Balok adalah bangun ruang 3 dimensi yang dibentuk oleh tiga pasang persegi atau persegi panjang, di mana paling sedikit satu pasang di antaranya berukuran berbeda.</p>
+            <p><b>Analogi:</b> Bayangkan kotak pasta gigi, kotak sepatu, atau batu bata!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Sifat-Sifat Utama Balok</div>
+            <p style="text-align: left;">• Tiga pasang sisi sejajar yang sama besar ($p \times l$, $p \times t$, $l \times t$)</p>
+            <p style="text-align: left;">• Rusuk: 12 buah (terbagi jadi 4 panjang, 4 lebar, 4 tinggi)</p>
+            <p style="text-align: left;">• Titik Sudut = 8 buah</p>
+            <p>$$ \text{Panjang Seluruh Rusuk} = 4 \times (p + l + t) $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah kerangka balok memiliki ukuran panjang $10\text{ cm}$, lebar $6\text{ cm}$, dan tinggi $4\text{ cm}$. Berapakah total panjang rusuk balok tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>$p = 10\text{ cm}$, $l = 6\text{ cm}$, $t = 4\text{ cm}$.</li>
+                <li>Hitung total panjang rusuk:
+                    <p>$$ \text{Total Rusuk} = 4 \times (10 + 6 + 4) = 4 \times 20 = \mathbf{80\text{ cm}} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Ingatlah kelompok rusuk balok: Ada 4 rusuk Panjang ($p$), 4 rusuk Lebar ($l$), dan 4 rusuk Tinggi ($t$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Jaring-Jaring Kubus &amp; Balok</div>
+
+        <div class="info-box">
+            <div class="box-title">✂️ Teori Ringkas Jaring-Jaring</div>
+            <p>Jaring-jaring adalah pola bidang datar yang diperoleh jika sebuah bangun ruang dibelah sepanjang rusuk-rusuknya lalu direbahkan.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Kunci Jaring-Jaring</div>
+            <p style="text-align: left;">• <b>Jaring-jaring Kubus:</b> Terdiri dari 6 buah persegi identik.</p>
+            <p style="text-align: left;">• <b>Jaring-jaring Balok:</b> Terdiri dari 6 buah persegi panjang, di mana sisi-sisi yang berhadapan memiliki ukuran yang sama persis.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Budi membuat jaring-jaring kubus. Jika alas kubus berada pada persegi nomor 3, persegi nomor berapakah yang menjadi tutup (atap) kubus jika susunannya membentuk pola sejajar?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>Pada jaring-jaring kubus standar (pola 1-4-1 atau 2-3-1), alas dan tutup selalu berselang satu kotak atau berhadapan secara simetris saat dilipat. Jika alas nomor 3, maka tutupnya adalah sisi yang berhadapan dengannya saat dibentuk kotak.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Tidak semua gabungan 6 persegi bisa membentuk kubus! Jika saat dilipat ada sisi yang saling tumpang tindih dan ada sisi yang bolong, maka pola tersebut <b>BUKAN</b> jaring-jaring kubus.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Volume Kubus &amp; Kubus Satuan</div>
+
+        <div class="info-box">
+            <div class="box-title">🧊 Teori Ringkas Volume Kubus</div>
+            <p>Volume adalah besarnya ruangan di dalam bangun ruang yang dapat ditempati oleh suatu benda/zat.</p>
+            <p>Menghitung volume kubus dapat membayangkan berapa banyak kubus satuan ($1\text{ cm}^3$) yang dapat dimasukkan ke dalamnya.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume &amp; Rusuk Kubus</div>
+            <p>$$ V = s \times s \times s = s^3 $$</p>
+            <p>$$ s = \sqrt[3]{V} $$</p>
+            <p style="font-size: 8.5px;">Keterangan: $V = \text{Volume}$, $s = \text{Panjang rusuk}$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b></p>
+            <p>a. Hitunglah volume kubus yang memiliki panjang rusuk $5\text{ cm}$!</p>
+            <p>b. Sebuah akuarium berbentuk kubus memiliki volume $216\text{ liter}$ ($216.000\text{ cm}^3$). Berapa cm panjang rusuk akuarium tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. $V = s^3 = 5 \times 5 \times 5 = \mathbf{125\text{ cm}^3}$.</p>
+            <p>b. $s = \sqrt[3]{216.000} = \mathbf{60\text{ cm}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Hafalkan Pangkat Tiga Dasar!</p>
+            <p>$1^3=1$, $2^3=8$, $3^3=27$, $4^3=64$, $5^3=125$, $6^3=216$. Ini sangat membantu menghitung akar pangkat tiga!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Volume Balok</div>
+
+        <div class="info-box">
+            <div class="box-title">📦 Teori Ringkas Volume Balok</div>
+            <p>Untuk menghitung volume balok, kita mengalikan luas alas ($p \times l$) dengan tinggi balok ($t$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Volume Balok &amp; Turunannya</div>
+            <p>$$ V = p \times l \times t $$</p>
+            <p>$$ p = \frac{V}{l \times t} \quad \mid \quad l = \frac{V}{p \times t} \quad \mid \quad t = \frac{V}{p \times l} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah bak mandi berbentuk balok memiliki panjang $120\text{ cm}$, lebar $80\text{ cm}$, dan tinggi $50\text{ cm}$.</p>
+            <p>a. Berapa $\text{cm}^3$ volume bak mandi tersebut?</p>
+            <p>b. Berapa liter air yang muat jika diisi penuh? ($1\text{ liter} = 1.000\text{ cm}^3$).</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. $V = p \times l \times t = 120 \times 80 \times 50 = \mathbf{480.000\text{ cm}^3}$.</p>
+            <p>b. Dalam liter: $480.000 \div 1.000 = \mathbf{480\text{ liter}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Perhatikan satuan volume! Satuan $1\text{ liter} = 1\text{ dm}^3$. Jadi sebelum menghitung liter, kamu bisa mengubah cm ke dm terlebih dahulu ($12\text{ dm} \times 8\text{ dm} \times 5\text{ dm} = 480\text{ liter}$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Penyajikan Data dalam Diagram Garis</div>
+
+        <div class="info-box">
+            <div class="box-title">📈 Teori Ringkas Diagram Garis</div>
+            <p>Diagram garis adalah cara menyajikan data yang diperoleh dari waktu ke waktu secara berurutan. Diagram ini sangat cocok untuk melihat tren kenaikan atau penurunan (seperti suhu badan, tinggi badan, atau penjualan harian).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Komponen Diagram Garis</div>
+            <p style="text-align: left;">• <b>Sumbu Mendatar (Horizontal):</b> Menunjukkan Waktu / Periode (Jam, Hari, Bulan, Tahun).</p>
+            <p style="text-align: left;">• <b>Sumbu Tegak (Vertikal):</b> Menunjukkan Nilai / Jumlah Kuantitas Data.</p>
+            <p style="text-align: left;">• <b>Titik &amp; Garis:</b> Hubungkan setiap titik data dengan garis lurus secara berurutan.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Data suhu badan pasien dari pukul 08.00 s.d. 11.00 berturut-turut adalah $38^\circ\text{C}$, $37^\circ\text{C}$, $39^\circ\text{C}$, dan $36^\circ\text{C}$.</p>
+            <p>a. Pada pukul berapa suhu badan pasien tertinggi?</p>
+            <p>b. Kapan penurunan suhu terbesar terjadi?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Suhu tertinggi $39^\circ\text{C}$ terjadi pada titik pukul <b>10.00</b>.</p>
+            <p>b. Penurunan terbesar terjadi dari pukul 10.00 ($39^\circ\text{C}$) ke pukul 11.00 ($36^\circ\text{C}$), yaitu turun sebesar $3^\circ\text{C}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Garis yang miring ke <b>ATAS</b> artinya terjadi <b>KENAIKAN</b> data. Garis yang miring ke <b>BAWAH</b> artinya terjadi <b>PENURUNAN</b> data.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Geometri Bangun Ruang (Kubus &amp; Balok)</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Banyaknya rusuk pada bangun ruang balok adalah...</p>
+            <p style="padding-left: 10px;">a. 6 &nbsp;&nbsp;&nbsp; b. 8 &nbsp;&nbsp;&nbsp; c. 12 &nbsp;&nbsp;&nbsp; d. 16</p>
+            <p>2. Sebuah kubus memiliki volume $343\text{ cm}^3$. Panjang rusuk kubus tersebut adalah...</p>
+            <p>3. Sebuah balok berukuran panjang $15\text{ cm}$ dan lebar $10\text{ cm}$. Jika volume balok $1.500\text{ cm}^3$, berapakah tinggi balok tersebut?</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Sebuah bak air berbentuk balok berukuran $1\text{ m} \times 0,8\text{ m} \times 0,6\text{ m}$ terisi air penuh. Air tersebut dipindahkan seluruhnya ke dalam kubus-kubus kecil berukuran rusuk $20\text{ cm}$. Berapa banyak kubus kecil yang dibutuhkan hingga seluruh air tertampung?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>1. Jawaban Soal Mandiri:</b></p>
+            <p>• Balok memiliki <b>12 rusuk</b> (Jawaban c).</p>
+            <p>• $s = \sqrt[3]{343} = \mathbf{7\text{ cm}}$.</p>
+            <p>• $t = \frac{V}{p \times l} = \frac{1.500}{15 \times 10} = \frac{1.500}{150} = \mathbf{10\text{ cm}}$.</p>
+            <p><b>2. Jawaban Soal HOTS:</b></p>
+            <p>• Ubah ukuran bak ke cm: $100\text{ cm} \times 80\text{ cm} \times 60\text{ cm}$.</p>
+            <p>• Volume bak balok = $100 \times 80 \times 60 = 480.000\text{ cm}^3$.</p>
+            <p>• Volume 1 kubus kecil = $20 \times 20 \times 20 = 8.000\text{ cm}^3$.</p>
+            <p>• Jumlah kubus = $480.000 \div 8.000 = \mathbf{60\text{ kubus kecil}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>LUAR BIASA!</b> Kamu telah berhasil menuntaskan seluruh materi Bab 4 sekaligus <b>MENGKHATAMKAN SELURUH KURIKULUM MATEMATIKA KELAS 5 SD</b>! Simpan berkas ini sebagai <code>kelas5-bab4.html</code> ya!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
