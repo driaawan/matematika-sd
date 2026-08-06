@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 6 Bab 1</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .concept-map { 
+            background-color: #F1F5F9; 
+            border-radius: 5px; 
+            padding: 5px 8px; 
+            font-family: monospace; 
+            font-size: 8.5px; 
+            white-space: pre; 
+            line-height: 1.2; 
+        }
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Mengenal Bilangan Bulat Positif &amp; Negatif</div>
+        
+        <div class="info-box">
+            <div class="box-title">🧊 Teori Ringkas &amp; Analogi Es Krim vs Panas</div>
+            <p>Bilangan bulat terdiri dari bilangan bulat positif, angka nol (0), dan bilangan bulat negatif.</p>
+            <p><b>Analogi:</b></p>
+            <p>• Suhu $10^\circ\text{C}$ di atas $0^\circ\text{C}$ ditulis $+10$ atau cukup $10$ (positif).</p>
+            <p>• Suhu es krim $5^\circ\text{C}$ di bawah $0^\circ\text{C}$ ditulis $-5$ (negatif lima).</p>
+            <p>• Untung Rp5.000 $\rightarrow +5.000$. Rugi Rp2.000 $\rightarrow -2.000$.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Kata Kunci Bilangan Negatif</div>
+            <p style="text-align: left;">Penggunaan dalam kehidupan sehari-hari:</p>
+            <p style="text-align: left;">• Di bawah permukaan laut $\rightarrow$ Negatif ($-$) &nbsp;&nbsp;&nbsp; • Meminjam / Utang / Rugi $\rightarrow$ Negatif ($-$)</p>
+            <p style="text-align: left;">• Di atas permukaan laut $\rightarrow$ Positif ($+$) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; • Untung / Kenaikan $\rightarrow$ Positif ($+$)</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Nyatakan kalimat berikut ke dalam bentuk bilangan bulat!</p>
+            <p>a. Kapal selam berada pada kedalaman 150 meter di bawah permukaan laut.</p>
+            <p>b. Suhu puncak gunung mencapai 3 derajat Celsius di bawah nol.</p>
+            <p>c. Dodi mendapat uang saku sebesar Rp10.000.</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Di bawah permukaan laut $\rightarrow \mathbf{-150}$.</p>
+            <p>b. Di bawah nol $\rightarrow \mathbf{-3}$.</p>
+            <p>c. Uang masuk/mendapat $\rightarrow \mathbf{+10.000}$ atau $\mathbf{10.000}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Tanda minus ($-$) <b>HARUS</b> ditulis jelas di depan angka negatif. Sedangkan tanda plus ($+$) pada bilangan positif tidak perlu dituliskan!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Garis Bilangan &amp; Membandingkan Bilangan Bulat</div>
+
+        <div class="info-box">
+            <div class="box-title">📏 Teori Ringkas Garis Bilangan</div>
+            <p>Garis bilangan membantu kita melihat posisi dan urutan bilangan bulat.</p>
+            <div class="concept-map">[Negatif] &lt;--- -3 --- -2 --- -1 --- 0 --- +1 --- +2 --- +3 ---&gt; [Positif]</div>
+            <p style="margin-top: 4px;"><b>Aturan Utama:</b></p>
+            <p>• Semakin ke KANAN, nilainya semakin <b>BESAR</b>.</p>
+            <p>• Semakin ke KIRI, nilainya semakin <b>KECIL</b>.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Perbandingan</div>
+            <p style="text-align: left;">• Semua bilangan positif <b>SELALU</b> lebih besar dari bilangan negatif ($2 &gt; -100$).</p>
+            <p style="text-align: left;">• Antara dua bilangan negatif, angka yang terlihat "lebih kecil" justru nilainya <b>LEBIH BESAR</b>! (Contoh: $-2 &gt; -5$).</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b></p>
+            <p>a. Berilah tanda perbandingan ($&gt;$ atau $&lt;$) untuk: $-8 \dots -3$ dan $-15 \dots 2$.</p>
+            <p>b. Urutkan bilangan berikut dari yang terkecil: $-4, 2, -7, 0, 5$.</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. $-8$ terletak di sebelah kiri $-3$, maka $\mathbf{-8 &lt; -3}$.</p>
+            <p>&nbsp;&nbsp;&nbsp;$-15$ (negatif) pasti lebih kecil dari $2$ (positif), maka $\mathbf{-15 &lt; 2}$.</p>
+            <p>b. Pilih angka negatif paling kiri dulu $\rightarrow \mathbf{-7, -4, 0, 2, 5}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Bayangkan sebagai Suhu Udara! Mana yang lebih dingin? $-8^\circ\text{C}$ lebih dingin daripada $-3^\circ\text{C}$, artinya $-8$ nilainya lebih kecil dari $-3$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Penjumlahan Bilangan Bulat</div>
+
+        <div class="info-box">
+            <div class="box-title">🟡🔵 Teori Ringkas Analogi Koin Positif &amp; Negatif</div>
+            <p>• Koin Positif ($+$) bertemu Koin Negatif ($-$) menjadi <b>PASANGAN NETRAL</b> (nilainya $0$).</p>
+            <p>• Ditambah ($+$) $\rightarrow$ Tambahkan koin baru.</p>
+            <p>• Jika tanda <b>SAMA</b> (positif + positif atau negatif + negatif), jumlahkan angkanya dan gunakan tanda yang sama!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Penjumlahan Beda Tanda</div>
+            <p style="text-align: left; font-size: 8.5px;">Jika menjumlahkan positif dan negatif (BEDA TANDA):</p>
+            <ol style="text-align: left;">
+                <li>Abaikan tanda, kurangkan angka BESAR dengan angka KECIL.</li>
+                <li>Tanda hasil <b>IKUT</b> tanda dari angka yang <b>LEBIH BESAR</b>!</li>
+            </ol>
+            <p>$$ (-a) + b = b - a \quad \mid \quad a + (-b) = a - b $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah:</p>
+            <p>a. $(-5) + (-3) = \dots$ &nbsp;&nbsp;&nbsp; b. $(-8) + 12 = \dots$ &nbsp;&nbsp;&nbsp; c. $7 + (-10) = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Tanda sama-sama negatif $\rightarrow 5 + 3 = 8$, beri tanda minus $\rightarrow \mathbf{-8}$.</p>
+            <p>b. Beda tanda $\rightarrow 12 - 8 = 4$. Angka besar adalah 12 (positif), maka hasil = $\mathbf{4}$.</p>
+            <p>c. Beda tanda $\rightarrow 10 - 7 = 3$. Angka besar adalah 10 (negatif), maka hasil = $\mathbf{-3}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Jangan bingung! Utang 5 ditumpuk Utang 3 menjadi Utang 8: $(-5) + (-3) = -8$. Utangnya bertambah banyak, bukan berkurang!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Pengurangan Bilangan Bulat</div>
+
+        <div class="info-box">
+            <div class="box-title">🔄 Teori Ringkas Mengubah Pengurangan Jadi Penjumlahan</div>
+            <p>Pengurangan bilangan bulat paling mudah diselesaikan dengan <b>MENGUBAHNYA</b> menjadi operasi <b>PENJUMLAHAN</b> dengan LAWAN bilangan pembaginya!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Kunci Perubahan Tanda</div>
+            <p style="text-align: left;">• Kurang ketemu Negatif berubah jadi <b>TAMBAH POSITIF</b>:</p>
+            <p>$$ a - (-b) = a + b $$</p>
+            <p style="text-align: left;">• Kurang Positif berubah jadi <b>TAMBAH NEGATIF</b>:</p>
+            <p>$$ a - b = a + (-b) $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah:</p>
+            <p>a. $6 - (-4) = \dots$ &nbsp;&nbsp;&nbsp; b. $(-5) - 3 = \dots$ &nbsp;&nbsp;&nbsp; c. $(-2) - (-9) = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Ubah $- (-4)$ menjadi $+ 4 \rightarrow 6 + 4 = \mathbf{10}$.</p>
+            <p>b. Ubah $- 3$ menjadi $+ (-3) \rightarrow (-5) + (-3) = \mathbf{-8}$.</p>
+            <p>c. Ubah $- (-9)$ menjadi $+ 9 \rightarrow (-2) + 9 = 9 - 2 = \mathbf{7}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Ingatlah Mantra Roda Tanda: <b>Min ketemu Min berdekatan $- (-)$ berubah menjadi PLUS $(+)$!</b></p>
+            <p>Contoh: $5 - (-3) = 5 + 3 = 8$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Perkalian &amp; Pembagian Bilangan Bulat</div>
+
+        <div class="info-box">
+            <div class="box-title">✖️➗ Teori Ringkas Aturan Tanda</div>
+            <p>Aturan tanda pada Perkalian dan Pembagian <b>SANGAT SEDERHANA</b> dan <b>SAMA PERSIS</b>! Kamu cukup melihat apakah kedua tandanya <b>SAMA</b> atau <b>BEDA</b>.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Tanda Perkalian &amp; Pembagian</div>
+            <p style="text-align: left;">• <b>Tanda SAMA $\rightarrow$ Hasil POSITIF ($+$)</b></p>
+            <p>$$ (+) \times (+) = (+) \quad \mid \quad (-) \times (-) = (+) $$</p>
+            <p style="text-align: left;">• <b>Tanda BEDA $\rightarrow$ Hasil NEGATIF ($-$)</b></p>
+            <p>$$ (+) \times (-) = (-) \quad \mid \quad (-) \times (+) = (-) $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah:</p>
+            <p>a. $(-6) \times (-4) = \dots$ &nbsp;&nbsp;&nbsp; b. $8 \times (-5) = \dots$</p>
+            <p>c. $(-36) \div 9 = \dots$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d. $(-20) \div (-4) = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Tanda sama (negatif $\times$ negatif) $\rightarrow 6 \times 4 = \mathbf{24}$.</p>
+            <p>b. Tanda beda (positif $\times$ negatif) $\rightarrow -(8 \times 5) = \mathbf{-40}$.</p>
+            <p>c. Tanda beda (negatif $\div$ positif) $\rightarrow -(36 \div 9) = \mathbf{-4}$.</p>
+            <p>d. Tanda sama (negatif $\div$ negatif) $\rightarrow 20 \div 4 = \mathbf{5}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Aturan tanda ini <b>HANYA BERLAKU</b> untuk Perkalian dan Pembagian! Jangan dicampuradukkan dengan aturan penjumlahan/pengurangan!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Operasi Hitung Campuran Bilangan Bulat</div>
+
+        <div class="info-box">
+            <div class="box-title">🏆 Teori Ringkas Urutan Kekuatan Operasi</div>
+            <p>Jika dalam satu soal terdapat campuran tambah, kurang, kali, bagi, dan tanda kurung, gunakan aturan Hirarki Operasi (KABATAKU).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Tangga Hirarki Operasi</div>
+            <ol style="text-align: left;">
+                <li><b>Tanda Kurung $( \dots )$</b> $\rightarrow$ KERJAKAN PALING AWAL!</li>
+                <li><b>Perkalian ($\times$) &amp; Pembagian ($\div$)</b> $\rightarrow$ Setara (kerjakan dari KIRI ke KANAN).</li>
+                <li><b>Penjumlahan ($+$) &amp; Pengurangan ($-$)</b> $\rightarrow$ Setara (kerjakan paling akhir dari KIRI ke KANAN).</li>
+            </ol>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah hasil dari: $-12 + 8 \times (-3) \div (-6) = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Kerjakan perkalian dulu: $8 \times (-3) = -24$.</li>
+                <li>Lanjutkan pembagian: $(-24) \div (-6) = 4$.</li>
+                <li>Terakhir lakukan penjumlahan: $-12 + 4 = \mathbf{-8}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Lingkari atau tandai dahulu operasi kali dan bagi sebelum menghitung agar tidak tertukar dengan operasi tambah atau kurang!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Bulat (Positif &amp; Negatif)</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Suhu di dalam kulkas $-4^\circ\text{C}$. Ketika listrik padam, suhu naik $2^\circ\text{C}$ setiap 5 menit. Berapa suhu kulkas setelah listrik padam selama 15 menit?</p>
+            <p style="padding-left: 10px;">a. $2^\circ\text{C}$ &nbsp;&nbsp;&nbsp; b. $6^\circ\text{C}$ &nbsp;&nbsp;&nbsp; c. $-2^\circ\text{C}$ &nbsp;&nbsp;&nbsp; d. $10^\circ\text{C}$</p>
+            <p>2. Hasil dari $(-15) \div 3 - (-8) = \dots$</p>
+            <p>3. Urutkan bilangan berikut dari yang terbesar: $-10, 5, -2, 0, -8$.</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Dalam sebuah kompetisi matematika yang terdiri dari 30 soal, aturan penskoran adalah: Jawaban benar diberi nilai $+4$, jawaban salah diberi nilai $-2$, dan tidak dijawab diberi nilai $-1$. Ahmad menjawab benar 22 soal dan tidak menjawab 3 soal. Berapakah total skor yang diperoleh Ahmad?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>1. Jawaban Soal Mandiri:</b></p>
+            <p>• Kenaikan suhu = $(15 \div 5) \times 2 = 3 \times 2 = 6^\circ\text{C}$. Suhu akhir = $-4 + 6 = \mathbf{2^\circ\text{C}}$ (Jawaban a).</p>
+            <p>• Hitung bagi dulu: $(-15) \div 3 = -5$. Lalu $-5 - (-8) = -5 + 8 = \mathbf{3}$.</p>
+            <p>• Urutan terbesar ke terkecil: $\mathbf{5, 0, -2, -8, -10}$.</p>
+            <p><b>2. Jawaban Soal HOTS:</b></p>
+            <p>• Benar = $22 \times 4 = 88$.</p>
+            <p>• Tidak dijawab = $3 \times (-1) = -3$.</p>
+            <p>• Salah = $(30 - 22 - 3) = 5\text{ soal} \rightarrow 5 \times (-2) = -10$.</p>
+            <p>• Total Skor = $88 + (-3) + (-10) = 88 - 13 = \mathbf{75}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>HEBAT!</b> Kamu telah menyelesaikan Bab 1 Kelas 6 Bilangan Bulat! Jangan lupa simpan berkas ini sebagai <code>kelas6-bab1.html</code> dan hubungkan ke portal utama kamu ya!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
