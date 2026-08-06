@@ -3,333 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boklet Matematika SD - Portal Rangkuman Pintar Kelas 4, 5 & 6</title>
-    
+    <title>Boklet Rangkuman Matematika SD</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* =========================================================
-           1. RESET & VARIABLES
-           ========================================================= */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         :root {
-            --primary-blue: #2563EB;
-            --primary-dark: #1E3A8A;
-            --secondary-teal: #0D9488;
-            --teal-light: #CCFBF1;
-            --amber-yellow: #D97706;
-            --amber-light: #FEF3C7;
-            --coral-red: #DC2626;
-            --coral-light: #FEE2E2;
-            --slate-dark: #1E293B;
-            --slate-gray: #64748B;
-            --bg-canvas: #F8FAFC;
+            --bg-color: #F8FAFC;
+            --text-main: #334155;
+            --kelas4-color: #3B82F6; /* Biru */
+            --kelas5-color: #10B981; /* Hijau */
+            --kelas6-color: #F59E0B; /* Kuning/Oranye */
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg-canvas);
-            color: var(--slate-dark);
-            line-height: 1.6;
-            padding-bottom: 60px;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Fredoka', cursive, sans-serif;
-        }
-
-        /* =========================================================
-           2. HEADER & HERO SECTION
-           ========================================================= */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
-            color: #FFFFFF;
-            text-align: center;
-            padding: 60px 20px 80px 20px;
-            border-bottom-left-radius: 36px;
-            border-bottom-right-radius: 36px;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
-            position: relative;
-        }
-
-        .hero-badge {
-            background-color: var(--amber-yellow);
-            color: #FFFFFF;
-            font-family: 'Fredoka', cursive, sans-serif;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 680px;
-            margin: 0 auto;
-            opacity: 0.9;
-            font-weight: 600;
-        }
-
-        /* =========================================================
-           3. MAIN CONTAINER & CLASS SECTIONS
-           ========================================================= */
-        .container {
-            max-width: 1080px;
-            margin: -40px auto 0 auto;
-            padding: 0 20px;
-        }
-
-        .class-section {
-            background-color: #FFFFFF;
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border: 2px solid #E2E8F0;
-        }
-
-        .class-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            border-bottom: 3px dashed #F1F5F9;
-            padding-bottom: 12px;
-        }
-
-        .class-icon {
-            font-size: 28px;
-            background: var(--teal-light);
-            width: 50px;
-            height: 50px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .class-title {
-            font-size: 24px;
-            color: var(--primary-dark);
-        }
-
-        /* Grid Cards */
-        .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .chapter-card {
-            border: 2px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            background: #FFFFFF;
-            position: relative;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .chapter-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 12px 20px rgba(37, 99, 235, 0.12);
+        /* HEADER STYLES */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            background: linear-gradient(135deg, #6366F1, #A855F7, #EC4899);
+            color: white;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-bottom: 40px;
         }
 
-        .chapter-tag {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--secondary-teal);
-            text-transform: uppercase;
+        .header h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
             letter-spacing: 0.5px;
-            margin-bottom: 6px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .chapter-name {
-            font-size: 18px;
-            color: var(--slate-dark);
-            margin-bottom: 12px;
+        .header p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            opacity: 0.9;
         }
 
-        .chapter-desc {
-            font-size: 13px;
-            color: var(--slate-gray);
-            margin-bottom: 18px;
-            flex-grow: 1;
+        /* MAIN CONTAINER & GRID */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding-bottom: 50px;
         }
 
-        .btn-open {
-            background-color: var(--primary-blue);
-            color: #FFFFFF;
+        /* CARD STYLES */
+        .grade-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* CARD HEADER COLORS */
+        .grade-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+        }
+        .card-kelas4::before { background-color: var(--kelas4-color); }
+        .card-kelas5::before { background-color: var(--kelas5-color); }
+        .card-kelas6::before { background-color: var(--kelas6-color); }
+
+        .grade-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-kelas4 .grade-title { color: var(--kelas4-color); }
+        .card-kelas5 .grade-title { color: var(--kelas5-color); }
+        .card-kelas6 .grade-title { color: var(--kelas6-color); }
+
+        /* LIST & LINKS */
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chapter-item a {
+            display: block;
             text-decoration: none;
-            text-align: center;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-family: 'Fredoka', cursive, sans-serif;
-            font-size: 14px;
-            display: inline-block;
-            transition: background 0.2s ease;
+            color: var(--text-main);
+            background-color: #F1F5F9;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 4px solid transparent;
         }
 
-        .btn-open:hover {
-            background-color: #1D4ED8;
+        .card-kelas4 .chapter-item a:hover {
+            background-color: #EFF6FF;
+            color: var(--kelas4-color);
+            border-left-color: var(--kelas4-color);
+        }
+        
+        .card-kelas5 .chapter-item a:hover {
+            background-color: #ECFDF5;
+            color: var(--kelas5-color);
+            border-left-color: var(--kelas5-color);
         }
 
-        .btn-disabled {
-            background-color: #E2E8F0;
+        .card-kelas6 .chapter-item a:hover {
+            background-color: #FFFBEB;
+            color: var(--kelas6-color);
+            border-left-color: var(--kelas6-color);
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #1E293B;
             color: #94A3B8;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        /* =========================================================
-           4. FOOTER
-           ========================================================= */
-        footer {
             text-align: center;
-            margin-top: 50px;
-            font-size: 14px;
-            color: var(--slate-gray);
-            font-weight: 600;
+            padding: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        footer span {
-            color: var(--coral-red);
+        .footer span {
+            color: #F43F5E; /* Warna Hati Merah/Pink */
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .header p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <span class="hero-badge">📚 Kurikulum Merdeka</span>
-        <h1>Boklet Matematika SD Pintar</h1>
-        <p>Rangkuman visual, seru, dan mudah dipahami berbentuk kartu A5 Landscape yang siap dibaca maupun dicetak!</p>
+    <!-- BAGIAN ATAS (HEADER) -->
+    <header class="header">
+        <h1>Boklet Rangkuman Matematika Kelas 4, 5 &amp; 6 SD</h1>
+        <p>Belajar bersama matematika bersama Aleyna</p>
     </header>
 
-    <!-- MAIN PORTAL CONTAINER -->
+    <!-- BAGIAN KONTEN SILABUS -->
     <main class="container">
+        
+        <!-- KARTU KELAS 4 -->
+        <div class="grade-card card-kelas4">
+            <h2 class="grade-title">📘 Kelas 4 SD</h2>
+            <ul class="chapter-list">
+                <li class="chapter-item"><a href="kelas4-bab1.html">Bab 1: Bilangan Cacah s.d 100.000</a></li>
+                <li class="chapter-item"><a href="kelas4-bab2.html">Bab 2: Pecahan Senilai &amp; Desimal</a></li>
+                <li class="chapter-item"><a href="kelas4-bab3.html">Bab 3: Pengukuran Sudut &amp; Bangun Datar</a></li>
+                <li class="chapter-item"><a href="kelas4-bab4.html">Bab 4: Pengukuran (Panjang/Berat) &amp; Data</a></li>
+            </ul>
+        </div>
 
-        <!-- KELAS 4 SD SECTION -->
-        <section class="class-section">
-            <div class="class-header">
-                <div class="class-icon">🎒</div>
-                <h2 class="class-title">Kelas 4 SD</h2>
-            </div>
-            
-            <div class="chapter-grid">
-                <!-- BAB 1 CARD (AKTIF) -->
-                <div class="chapter-card">
-                    <div>
-                        <div class="chapter-tag">BAB 1 • TERSEDIA</div>
-                        <h3 class="chapter-name">Bilangan Cacah s.d. 100.000</h3>
-                        <p class="chapter-desc">Nilai tempat, membaca/menulis angka, perbandingan, hingga operasi porogapit cilik.</p>
-                    </div>
-                    <!-- Navigasi mengarah ke file HTML Bab 1 -->
-                    <a href="kelas4-bab1.html" class="btn-open">🚀 Buka Boklet Bab 1</a>
-                </div>
+        <!-- KARTU KELAS 5 -->
+        <div class="grade-card card-kelas5">
+            <h2 class="grade-title">📗 Kelas 5 SD</h2>
+            <ul class="chapter-list">
+                <li class="chapter-item"><a href="kelas5-bab1.html">Bab 1: Bilangan s.d 1.000.000 &amp; KPK/FPB</a></li>
+                <li class="chapter-item"><a href="kelas5-bab2.html">Bab 2: Operasi Pecahan &amp; Desimal</a></li>
+                <li class="chapter-item"><a href="kelas5-bab3.html">Bab 3: Rasio (Perbandingan) &amp; Skala</a></li>
+                <li class="chapter-item"><a href="kelas5-bab4.html">Bab 4: Geometri Bangun Ruang (Kubus &amp; Balok)</a></li>
+            </ul>
+        </div>
 
-                <!-- BAB 2 CARD (AKTIF) -->
-                <div class="chapter-card">
-                    <div>
-                        <div class="chapter-tag">BAB 2 • TERSEDIA</div>
-                        <h3 class="chapter-name">Pecahan Senilai & Desimal</h3>
-                        <p class="chapter-desc">Konsep potongan roti, menyederhanakan pecahan, desimal, dan persen.</p>
-                    </div>
-                    <!-- Navigasi mengarah ke file HTML Bab 2 -->
-                    <a href="kelas4-bab2.html" class="btn-open">🚀 Buka Boklet Bab 2</a>
-                </div>
-
-                <!-- BAB 3 CARD (AKTIF) -->
-                <div class="chapter-card">
-                    <div>
-                        <div class="chapter-tag">BAB 3 • TERSEDIA</div>
-                        <h3 class="chapter-name">Sudut & Bangun Datar</h3>
-                        <p class="chapter-desc">Mengenal jenis sudut, busur derajat, keliling, dan luas persegi/segitiga.</p>
-                    </div>
-                    <!-- Navigasi mengarah ke file HTML Bab 3 -->
-                 <a href="kelas4-bab3.html" class="btn-open">🚀 Buka Boklet Bab 3</a>
-                </div>
-
-        <!-- KELAS 5 SD SECTION -->
-        <section class="class-section">
-            <div class="class-header">
-                <div class="class-icon" style="background: var(--amber-light);">📐</div>
-                <h2 class="class-title">Kelas 5 SD</h2>
-            </div>
-
-            <div class="chapter-grid">
-                <div class="chapter-card" style="opacity: 0.7;">
-                    <div>
-                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 1 • SEGERA HADIR</div>
-                        <h3 class="chapter-name">KPK & FPB</h3>
-                        <p class="chapter-desc">Hitung jadwal bersamaan (KPK) dan membagi paket jajan sama banyak (FPB).</p>
-                    </div>
-                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
-                </div>
-
-                <div class="chapter-card" style="opacity: 0.7;">
-                    <div>
-                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 3 • SEGERA HADIR</div>
-                        <h3 class="chapter-name">Rasio & Skala Peta</h3>
-                        <p class="chapter-desc">Menghitung jarak sebenarnya pada denah rumah dan resep es sirup.</p>
-                    </div>
-                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- KELAS 6 SD SECTION -->
-        <section class="class-section">
-            <div class="class-header">
-                <div class="class-icon" style="background: var(--coral-light);">🌟</div>
-                <h2 class="class-title">Kelas 6 SD</h2>
-            </div>
-
-            <div class="chapter-grid">
-                <div class="chapter-card" style="opacity: 0.7;">
-                    <div>
-                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 1 • SEGERA HADIR</div>
-                        <h3 class="chapter-name">Bilangan Bulat Negatif</h3>
-                        <p class="chapter-desc">Petualangan di bawah nol: suhu freezer, kedalaman laut, dan garis bilangan.</p>
-                    </div>
-                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
-                </div>
-
-                <div class="chapter-card" style="opacity: 0.7;">
-                    <div>
-                        <div class="chapter-tag" style="color: var(--amber-yellow);">BAB 2 • SEGERA HADIR</div>
-                        <h3 class="chapter-name">Keliling & Luas Lingkaran</h3>
-                        <p class="chapter-desc">Rumus jari-jari, diameter, phi (22/7 & 3,14) untuk roda dan pizza.</p>
-                    </div>
-                    <a href="#" class="btn-open btn-disabled">⏳ Segera Hadir</a>
-                </div>
-            </div>
-        </section>
+        <!-- KARTU KELAS 6 -->
+        <div class="grade-card card-kelas6">
+            <h2 class="grade-title">📙 Kelas 6 SD</h2>
+            <ul class="chapter-list">
+                <li class="chapter-item"><a href="kelas6-bab1.html">Bab 1: Bilangan Bulat Negatif</a></li>
+                <li class="chapter-item"><a href="kelas6-bab2.html">Bab 2: Lingkaran</a></li>
+                <li class="chapter-item"><a href="kelas6-bab3.html">Bab 3: Bangun Ruang Lanjutan</a></li>
+                <li class="chapter-item"><a href="kelas6-bab4.html">Bab 4: Kecepatan &amp; Debit</a></li>
+                <li class="chapter-item"><a href="kelas6-bab5.html">Bab 5: Pengolahan Data &amp; Statistik Dasar</a></li>
+            </ul>
+        </div>
 
     </main>
 
-    <footer>
-        <p>Dibuat dengan <span>❤️</span> oleh aleysia • Siap Cetak PDF & Web Interaktif</p>
+    <!-- BAGIAN BAWAH (FOOTER) -->
+    <footer class="footer">
+        Dibuat dengan <span>❤️</span> oleh Aleyna &bull; Siap Cetak PDF &amp; Web Interaktif
     </footer>
 
 </body>
