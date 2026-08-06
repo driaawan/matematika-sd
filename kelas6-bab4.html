@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 6 Bab 4</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Konsep Dasar Kecepatan (Jarak &amp; Waktu)</div>
+        
+        <div class="info-box">
+            <div class="box-title">🚴 Teori Ringkas &amp; Analogi Bersepeda</div>
+            <p>Kecepatan adalah besarnya jarak yang ditempuh oleh suatu benda dalam satuan waktu tertentu.</p>
+            <p><b>Analogi:</b> Jika kamu bersepeda dengan kecepatan $15\text{ km/jam}$, artinya dalam waktu 1 jam kamu bisa menempuh jarak sejauh 15 km!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Segitiga Ajaib JOKOWI (Jarak, Kecepatan, Waktu)</div>
+            <p style="text-align: left; font-size: 8.5px;">Untuk mempermudah menghafal rumus:</p>
+            <p style="text-align: left; font-size: 8.5px;">• Jarak ($J$ / $s$) ada di Puncak Segitiga.</p>
+            <p style="text-align: left; font-size: 8.5px;">• Kecepatan ($K$ / $v$) dan Waktu ($W$ / $t$) ada di Alas Segitiga.</p>
+            <p>
+$$ J = K \times W \quad \mid \quad K = \frac{J}{W} \quad \mid \quad W = \frac{J}{K} $$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ayah mengendarai mobil sejauh $120\text{ km}$ dalam waktu $2\text{ jam}$. Berapakah kecepatan rata-rata mobil Ayah?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Diketahui $J = 120\text{ km}$ dan $W = 2\text{ jam}$.</li>
+                <li>Gunakan rumus $K = \frac{J}{W}$:
+                    <p>
+$$ K = \frac{120}{2} = \mathbf{60\text{ km/jam}} $$
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Perhatikan satuan! Kecepatan biasanya menggunakan $\text{km/jam}$ atau $\text{m/detik}$. Jangan sampai satuan jarak dan waktunya belum setara saat dimasukkan ke dalam rumus!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Konversi Satuan Kecepatan</div>
+
+        <div class="info-box">
+            <div class="box-title">🔄 Teori Ringkas Mengubah Satuan Kecepatan</div>
+            <p>Sering kali kita perlu mengubah satuan kecepatan, misalnya dari $\text{km/jam}$ menjadi $\text{m/detik}$ atau sebaliknya.</p>
+            <p>Ingatlah kunci konversi waktu &amp; jarak:</p>
+            <p>• $1\text{ km} = 1.000\text{ m}$</p>
+            <p>• $1\text{ jam} = 60\text{ menit} = 3.600\text{ detik}$</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Kunci Konversi Kecepatan</div>
+            <p>
+$$ 1\text{ km/jam} = \frac{1.000\text{ m}}{3.600\text{ detik}} = \frac{5}{18}\text{ m/detik} $$
+            </p>
+            <p>
+$$ 1\text{ m/detik} = \frac{\frac{1}{1.000}\text{ km}}{\frac{1}{3.600}\text{ jam}} = \frac{18}{5}\text{ km/jam} = 3,6\text{ km/jam} $$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah sepeda motor bergerak dengan kecepatan $72\text{ km/jam}$. Berapakah kecepatan sepeda motor tersebut jika dinyatakan dalam $\text{m/detik}$?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah $72\text{ km}$ ke meter $\rightarrow 72 \times 1.000 = 72.000\text{ m}$.</li>
+                <li>Ubah $1\text{ jam}$ ke detik $\rightarrow 3.600\text{ detik}$.</li>
+                <li>Hitung kecepatan dalam $\text{m/detik}$:
+                    <p>
+$$ K = \frac{72.000\text{ m}}{3.600\text{ detik}} = \mathbf{20\text{ m/detik}} $$
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Trik kilat mengubah $\text{km/jam}$ ke $\text{m/detik}$: Cukup <b>kalikan dengan 5 lalu bagi dengan 18</b>!</p>
+            <p>Contoh: $72 \times \frac{5}{18} = 4 \times 5 = 20\text{ m/detik}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Soal Cerita Penerapan Kecepatan (Papasan &amp; Menyusul)</div>
+
+        <div class="info-box">
+            <div class="box-title">🚗🚙 Teori Ringkas Dua Kendaraan</div>
+            <p>Masalah kecepatan tingkat lanjut biasanya melibatkan dua kendaraan yang bergerak saling mendekat (berpapasan) atau bergerak searah (berpapasan/menyusul).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Waktu Papasan ($W_p$)</div>
+            <p style="font-size: 8.5px;">Jika dua kendaraan berangkat pada <b>WAKTU YANG SAMA</b> dari arah berlawanan:</p>
+            <p>
+$$ W_p = \frac{\text{Jarak Total}}{K_1 + K_2} $$
+            </p>
+            <p style="font-size: 8.5px;">Keterangan: $K_1 = \text{Kecepatan Orang 1}$, $K_2 = \text{Kecepatan Orang 2}$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Budi berangkat dari Kota A ke Kota B ($Jarak = 180\text{ km}$) naik mobil dengan kecepatan $40\text{ km/jam}$. Pada saat bersamaan, Ani berangkat dari Kota B ke Kota A naik mobil dengan kecepatan $50\text{ km/jam}$. Jika mereka berangkat pukul 08.00, pukul berapa mereka akan berpapasan?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Hitung Waktu Papasan ($W_p$):
+                    <p>
+$$ W_p = \frac{180}{40 + 50} = \frac{180}{90} = 2\text{ jam} $$
+                    </p>
+                </li>
+                <li>Tambahkan ke jam keberangkatan: $08.00 + 2\text{ jam} = \mathbf{10.00}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Saat berpapasan dari arah berlawanan, kecepatannya <b>DITAMBAHKAN</b> ($K_1 + K_2$) karena jarak di antara kedua kendaraan berkurang lebih cepat!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Konsep Dasar Debit (Volume &amp; Waktu)</div>
+
+        <div class="info-box">
+            <div class="box-title">🚰 Teori Ringkas &amp; Analogi Mengisi Kran Air</div>
+            <p>Debit adalah banyaknya volume zat cair yang mengalir melalui suatu penampang dalam satuan waktu tertentu.</p>
+            <p><b>Analogi:</b> Jika kran air memiliki debit $5\text{ liter/menit}$, artinya setiap 1 menit kran tersebut mampu mengeluarkan 5 liter air!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Segitiga Ajaib VOKOWI (Volume, Debit, Waktu)</div>
+            <p style="text-align: left; font-size: 8.5px;">Untuk mempermudah menghafal rumus:</p>
+            <p style="text-align: left; font-size: 8.5px;">• Volume ($V$) ada di Puncak Segitiga.</p>
+            <p style="text-align: left; font-size: 8.5px;">• Debit ($D$) dan Waktu ($W$ / $t$) ada di Alas Segitiga.</p>
+            <p>
+$$ V = D \times W \quad \mid \quad D = \frac{V}{W} \quad \mid \quad W = \frac{V}{D} $$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah ember dialiri air dari kran selama $4\text{ menit}$. Jika volume air yang terkumpul di dalam ember adalah $20\text{ liter}$, berapakah debit air kran tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Diketahui $V = 20\text{ liter}$ dan $W = 4\text{ menit}$.</li>
+                <li>Gunakan rumus $D = \frac{V}{W}$:
+                    <p>
+$$ D = \frac{20}{4} = \mathbf{5\text{ liter/menit}} $$
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Satuan debit selalu berupa <b>[Satuan Volume] / [Satuan Waktu]</b>, misalnya $\text{liter/menit}$, $\text{m}^3/\text{jam}$, atau $\text{cm}^3/\text{detik}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Konversi Satuan Volume &amp; Debit</div>
+
+        <div class="info-box">
+            <div class="box-title">🪣 Teori Ringkas Hubungan Satuan Volume</div>
+            <p>Sebelum mengonversi debit, pastikan memahami hubungan dua tangga satuan volume:</p>
+            <p>• <b>Tangga Kubik ($\text{m}^3$):</b> Naik 1 tangga dibagi $1.000$, turun 1 tangga dikali $1.000$.</p>
+            <p>• <b>Tangga Liter ($\text{liter}$):</b> Naik 1 tangga dibagi $10$, turun 1 tangga dikali $10$.</p>
+            <p>• <b>Jembatan Keledai Kunci:</b> $1\text{ dm}^3 = 1\text{ liter}$ dan $1\text{ cm}^3 = 1\text{ mL} = 1\text{ cc}$.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Perubahan Satuan Debit</div>
+            <p>
+$$ \text{Debit Baru} = \frac{\text{Volume Setelah Dikonversi}}{\text{Waktu Setelah Dikonversi}} $$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Debit sebuah kran pemadam kebakaran adalah $36\text{ m}^3/\text{jam}$. Berapakah debit tersebut jika dinyatakan dalam $\text{liter/detik}$?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah $36\text{ m}^3$ ke liter ($\text{dm}^3$) $\rightarrow 36 \times 1.000 = 36.000\text{ liter}$.</li>
+                <li>Ubah $1\text{ jam}$ ke detik $\rightarrow 3.600\text{ detik}$.</li>
+                <li>Hitung debit dalam $\text{liter/detik}$:
+                    <p>
+$$ D = \frac{36.000\text{ liter}}{3.600\text{ detik}} = \mathbf{10\text{ liter/detik}} $$
+                    </p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Ingat selalu jembatan utama: $1\text{ dm}^3 = 1\text{ liter}$! Mengubah $\text{m}^3$ ke $\text{liter}$ sama artinya dengan mengubah $\text{m}^3$ ke $\text{dm}^3$ (turun 1 tangga = dikali $1.000$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Penerapan Soal Cerita Debit (Mengisi &amp; Mengosongkan Bak)</div>
+
+        <div class="info-box">
+            <div class="box-title">🏊 Teori Ringkas Aplikasi Debit</div>
+            <p>Dalam kehidupan sehari-hari, debit digunakan untuk menghitung waktu yang dibutuhkan untuk mengisi penuh bak mandi, kolam renang, atau mengosongkan tangki minyak.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Menghitung Waktu Pengisian ($W$)</div>
+            <p>
+$$ W = \frac{V}{D} $$
+            </p>
+            <p style="font-size: 8.5px;">Jika bak memiliki ukuran $p \times l \times t$, hitung Volume bak mandi terlebih dahulu dengan rumus volume balok!</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah kolam renang berbentuk balok dengan panjang $10\text{ m}$, lebar $6\text{ m}$, dan kedalaman $1,5\text{ m}$. Kolam diisi air menggunakan pompa berdebit $500\text{ liter/menit}$. Berapa jam waktu yang dibutuhkan hingga kolam terisi penuh?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Hitung Volume Kolam ($\text{m}^3$): $V = 10 \times 6 \times 1,5 = 90\text{ m}^3$.</li>
+                <li>Ubah Volume ke liter: $90 \times 1.000 = 90.000\text{ liter}$.</li>
+                <li>Hitung Waktu Pengisian ($W$):
+                    <p>
+$$ W = \frac{90.000}{500} = 180\text{ menit} $$
+                    </p>
+                </li>
+                <li>Ubah menit ke jam: $180 \div 60 = \mathbf{3\text{ jam}}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Selalu perhatikan unit akhir yang diminta soal! Jika hasil awal dalam menit dan soal meminta dalam jam, bagilah dengan 60.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Kecepatan &amp; Debit</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Sebuah kereta api melaju dengan kecepatan $90\text{ km/jam}$. Jarak yang ditempuh kereta api tersebut selama $2,5\text{ jam}$ adalah...</p>
+            <p style="padding-left: 10px;">a. $180\text{ km}$ &nbsp;&nbsp;&nbsp; b. $225\text{ km}$ &nbsp;&nbsp;&nbsp; c. $250\text{ km}$ &nbsp;&nbsp;&nbsp; d. $300\text{ km}$</p>
+            <p>2. Sebuah selang mengalirkan air sebanyak $120\text{ liter}$ dalam waktu $3\text{ menit}$. Debit air dari selang tersebut adalah... $\text{liter/detik}$.</p>
+            <p>3. Debit kran air adalah $2\text{ liter/detik}$. Waktu yang diperlukan untuk mengisi wadah bervolume $48\text{ liter}$ adalah... detik.</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Sebuah mobil tangki membawa $6.000\text{ liter}$ minyak tanah. Minyak tersebut disalurkan ke 2 SPBU berbeda. Ke SPBU pertama dialirkan minyak dengan debit $100\text{ liter/menit}$ selama 30 menit. Sisanya dialirkan ke SPBU kedua dengan debit $150\text{ liter/menit}$. Berapa menit waktu yang dibutuhkan untuk menyalurkan minyak ke SPBU kedua?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>1. Jawaban Soal Mandiri:</b></p>
+            <p>• $J = K \times W = 90 \times 2,5 = \mathbf{225\text{ km}}$ (Jawaban b).</p>
+            <p>• Ubah waktu ke detik: $3\text{ menit} = 180\text{ detik}$.
+            <p>
+$$ D = \frac{120}{180} = \mathbf{\frac{2}{3}\text{ liter/detik}} $$
+            </p>
+            <p>• $W = \frac{V}{D} = \frac{48}{2} = \mathbf{24\text{ detik}}$.</p>
+            <p><b>2. Jawaban Soal HOTS:</b></p>
+            <p>• Volume disalurkan ke SPBU 1 = $100\text{ liter/menit} \times 30\text{ menit} = 3.000\text{ liter}$.</p>
+            <p>• Sisa minyak untuk SPBU 2 = $6.000 - 3.000 = 3.000\text{ liter}$.</p>
+            <p>• Waktu untuk SPBU 2 = $\frac{3.000}{150} = \mathbf{20\text{ menit}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>HEBAT!</b> Kamu telah berhasil menguasai materi Bab 4 Kecepatan &amp; Debit Kelas 6 SD[span_6](start_span)[span_6](end_span). Terus semangat, karena petualangan matematika kita masih panjang! Bersiaplah memasuki <b>Percakapan 3</b> untuk mempelajari cara merilis berkas ini ke dunia maya[span_7](start_span)[span_7](end_span)!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 6</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
