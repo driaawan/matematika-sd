@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 5 Bab 2</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Penjumlahan &amp; Pengurangan Pecahan Beda Penyebut</div>
+        
+        <div class="info-box">
+            <div class="box-title">🍕 Teori Ringkas &amp; Analogi Potongan Pizza</div>
+            <p>Jika pecahan memiliki penyebut yang berbeda, kita <b>TIDAK BISA</b> langsung menjumlahkan pembilangnya!</p>
+            <p><b>Analogi:</b> Kamu tidak bisa menjumlahkan 1 potong pizza besar (dibagi 2) dengan 1 potong pizza kecil (dibagi 4) sebelum memotongnya menjadi ukuran yang sama besar!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Langkah Menyelesaikan Pecahan Beda Penyebut</div>
+            <ol style="text-align: left;">
+                <li>Cari KPK dari kedua penyebut untuk menyamakan penyebutnya.</li>
+                <li>Ubah pembilang menyesuaikan penyebut baru.</li>
+                <li>Jumlahkan atau kurangkan pembilangnya saja (penyebut <b>TETAP</b>).</li>
+            </ol>
+            <p>$$ \frac{a}{b} \pm \frac{c}{d} = \frac{(a \times m)}{(b \times m)} \pm \frac{(c \times n)}{(d \times n)} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ibu memiliki $\frac{1}{2}\text{ kg}$ tepung terigu, lalu membeli lagi $\frac{1}{3}\text{ kg}$. Berapa kg total tepung terigu Ibu?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Cari KPK dari penyebut 2 dan 3 $\rightarrow \text{KPK} = 6$.</li>
+                <li>Ubah pecahan ke penyebut 6:
+                    <p>$$ \frac{1}{2} = \frac{1 \times 3}{2 \times 3} = \frac{3}{6} $$</p>
+                    <p>$$ \frac{1}{3} = \frac{1 \times 2}{3 \times 2} = \frac{2}{6} $$</p>
+                </li>
+                <li>Jumlahkan pembilangnya:
+                    <p>$$ \frac{3}{6} + \frac{2}{6} = \frac{3 + 2}{6} = \mathbf{\frac{5}{6}\text{ kg}} $$</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Jangan pernah menjumlahkan penyebut! Contoh Salah: $\frac{1}{2} + \frac{1}{3} = \frac{2}{5}$ (<b>SALAH BESAR!</b>). Penyebut hanya disamakan, tidak dijumlahkan.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Penjumlahan &amp; Pengurangan Pecahan Campuran</div>
+
+        <div class="info-box">
+            <div class="box-title">🥞 Teori Ringkas Pecahan Campuran</div>
+            <p>Pecahan campuran terdiri dari bilangan bulat dan pecahan biasa (contoh: $2\frac{1}{2}$).</p>
+            <p>Ada dua cara menyelesaikan penjumlahan pecahan campuran:</p>
+            <p>• <b>Cara 1:</b> Kelompokkan bilangan bulat dengan bilangan bulat, dan pecahan dengan pecahan.</p>
+            <p>• <b>Cara 2:</b> Ubah semua pecahan campuran menjadi pecahan biasa terlebih dahulu.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Mengubah Pecahan Campuran ke Pecahan Biasa</div>
+            <p>$$ A\frac{b}{c} = \frac{(A \times c) + b}{c} $$</p>
+            <p>$$ \text{Contoh: } 2\frac{1}{3} = \frac{(2 \times 3) + 1}{3} = \frac{7}{3} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ayah membeli $2\frac{1}{2}$ meter kayu. Digunakan untuk membuat rak meja $1\frac{1}{4}$ meter. Berapa meter sisa kayu Ayah?</p>
+            <p><b>Pembahasan (Mengelompokkan Bilangan Bulat):</b></p>
+            <ol>
+                <li>Kurangkan bilangan bulat: $2 - 1 = 1$.</li>
+                <li>Samakan penyebut pecahan: $\frac{1}{2} - \frac{1}{4} = \frac{2}{4} - \frac{1}{4} = \frac{1}{4}$.</li>
+                <li>Gabungkan hasil bulat dan pecahan: $1 + \frac{1}{4} = \mathbf{1\frac{1}{4}\text{ meter}}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Jika pecahan pada pengurangan tidak cukup dikurangi (misal: $\frac{1}{4} - \frac{3}{4}$), pinjam angka 1 dari bilangan bulat di depannya! (Ingat: $1 = \frac{\text{penyebut}}{\text{penyebut}}$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Perkalian Pecahan Biasa &amp; Campuran</div>
+
+        <div class="info-box">
+            <div class="box-title">✖️ Teori Ringkas Perkalian Pecahan</div>
+            <p>Perkalian pecahan <b>SANGAT MUDAH</b>! Kamu <b>TIDAK PERLU</b> menyamakan penyebut.</p>
+            <p>Cukup kalikan Pembilang dengan Pembilang, dan Penyebut dengan Penyebut.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Formula Perkalian Pecahan</div>
+            <p>$$ \frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d} $$</p>
+            <p style="font-size: 8.5px;">Catatan: Jika ada pecahan campuran, WAJIB diubah menjadi pecahan biasa terlebih dahulu!</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah hasil dari $1\frac{1}{2} \times \frac{2}{5}$!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah pecahan campuran menjadi pecahan biasa: $$ 1\frac{1}{2} = \frac{3}{2} $$</li>
+                <li>Kalikan pembilang dengan pembilang, penyebut dengan penyebut: $$ \frac{3}{2} \times \frac{2}{5} = \frac{3 \times 2}{2 \times 5} = \frac{6}{10} $$</li>
+                <li>Sederhanakan hasil pecahan (bagi 2): $$ \frac{6 \div 2}{10 \div 2} = \mathbf{\frac{3}{5}} $$</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT (METODE Coret/Sederhana Silang)</div>
+            <p>Kamu bisa mencoret/membagi angka pembilang dan penyebut yang sama sebelum dikalikan!</p>
+            <p>Pada $\frac{3}{2} \times \frac{2}{5}$, angka 2 di atas dan di bawah bisa dicoret menjadi 1, sehingga langsung didapatkan $\mathbf{\frac{3}{5}}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Pembagian Pecahan (Teknik KALI-BALIK)</div>
+
+        <div class="info-box">
+            <div class="box-title">➗ Teori Ringkas Pembagian Pecahan</div>
+            <p>Membagi dengan pecahan sama artinya dengan <b>MENGALIKAN dengan KEBALIKAN</b> pecahan tersebut!</p>
+            <p><b>Analogi:</b> Membagi 2 kue menjadi setengah-setengah ($\div \frac{1}{2}$) akan menghasilkan 4 potong kue ($2 \times 2 = 4$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus KALI-BALIK (Keep-Change-Flip)</div>
+            <p style="text-align: left; font-size: 8.5px;">Ubah tanda bagi ($\div$) menjadi kali ($\times$), lalu <b>BALIKKAN</b> pecahan pembaginya (pembilang jadi penyebut)!</p>
+            <p>$$ \frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{a \times d}{b \times c} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ibu memiliki $\frac{3}{4}$ liter jus jeruk. Jus tersebut dituang ke dalam gelas berukuran $\frac{1}{8}$ liter. Berapa banyak gelas yang dibutuhkan Ibu?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Tuliskan bentuk pembagian: $\frac{3}{4} \div \frac{1}{8}$.</li>
+                <li>Ubah menjadi perkalian dan balikkan $\frac{1}{8}$ menjadi $\frac{8}{1}$:
+                    <p>$$ \frac{3}{4} \times \frac{8}{1} = \frac{3 \times 8}{4 \times 1} = \frac{24}{4} $$</p>
+                </li>
+                <li>Hitung hasil bagi: $24 \div 4 = \mathbf{6\text{ gelas}}$.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Yang dibalik <b>HANYA</b> pecahan kedua (pecahan pembagi)! Pecahan pertama di sebelah kiri tanda bagi <b>TETAP</b> dan tidak boleh dibalik.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Penjumlahan &amp; Pengurangan Desimal Bersusun</div>
+
+        <div class="info-box">
+            <div class="box-title">📝 Teori Ringkas Penjumlahan/Pengurangan Desimal</div>
+            <p>Kunci utama menjumlahkan atau mengurangkan bilangan desimal adalah <b>SEJAJARKAN TANDA KOMA (,)</b> secara lurus ke bawah!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Penjumlahan &amp; Pengurangan Desimal</div>
+            <ol style="text-align: left;">
+                <li>Tuliskan bilangan secara bersusun.</li>
+                <li>Luruskan tanda koma (,) kedua bilangan.</li>
+                <li>Tambahkan angka 0 di belakang koma jika jumlah digit tidak sama.</li>
+                <li>Lakukan operasi hitung seperti biasa dari kanan ke kiri.</li>
+            </ol>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Hitunglah hasil dari:</p>
+            <p>a. $12,45 + 3,8 = \dots$</p>
+            <p>b. $8,5 - 2,35 = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Luruskan koma (tambahkan 0 pada $3,8$):
+            $$
+            \begin{array}{rcc}
+            12,45 \\
+            +\quad 3,80 \\
+            \hline
+            \mathbf{16,25}
+            \end{array}
+            $$
+            </p>
+            <p>b. Luruskan koma (tambahkan 0 pada $8,5$ agar bisa dikurangi 5):
+            $$
+            \begin{array}{rcc}
+            8,50 \\
+            -\quad 2,35 \\
+            \hline
+            \mathbf{6,15}
+            \end{array}
+            $$
+            </p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Pada $8,5 - 2,35$, jangan langsung turunkan angka 5 di belakang! Tambahkan angka 0 sehingga menjadi $8,50 - 2,35$, lalu lakukan teknik meminjam ($10 - 5 = 5$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Perkalian &amp; Pembagian Desimal</div>
+
+        <div class="info-box">
+            <div class="box-title">💡 Teori Ringkas Hitung Desimal</div>
+            <p>• <b>Perkalian Desimal:</b> Hitung seperti perkalian biasa tanpa koma, lalu jumlahkan total digit di belakang koma.</p>
+            <p>• <b>Pembagian Desimal:</b> Kalikan kedua bilangan dengan 10, 100, atau 1.000 untuk menghilangkan koma, lalu bagi bersusun (porogapit).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Jumlah Koma Perkalian</div>
+            <p>$$ (1 \text{ digit dibelakang koma}) \times (2 \text{ digit dibelakang koma}) = (3 \text{ digit dibelakang koma}) $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b></p>
+            <p>a. $0,4 \times 1,25 = \dots$</p>
+            <p>b. $4,5 \div 0,5 = \dots$</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Perkalian:</p>
+            <p>&nbsp;&nbsp;&nbsp;• Hitung $4 \times 125 = 500$.</p>
+            <p>&nbsp;&nbsp;&nbsp;• Total digit di belakang koma: 1 digit ($0,4$) + 2 digit ($1,25$) = 3 digit.</p>
+            <p>&nbsp;&nbsp;&nbsp;• Pasang koma 3 digit dari kanan: $0,500 = \mathbf{0,5}$.</p>
+            <p>b. Pembagian:</p>
+            <p>&nbsp;&nbsp;&nbsp;• Hilangkan koma dengan mengalikan 10: $4,5 \times 10 = 45$ dan $0,5 \times 10 = 5$.</p>
+            <p>&nbsp;&nbsp;&nbsp;• Hitung: $45 \div 5 = \mathbf{9}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Nol di paling belakang setelah tanda koma boleh dihapus! Contoh: $0,500$ nilainya sama dengan $0,5$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 2</span>
+                <span class="chapter-title">Operasi Hitung Pecahan &amp; Desimal</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Hasil dari $\frac{2}{5} + \frac{1}{3} = \dots$</p>
+            <p style="padding-left: 10px;">a. $\frac{3}{8}$ &nbsp;&nbsp;&nbsp; b. $\frac{11}{15}$ &nbsp;&nbsp;&nbsp; c. $\frac{7}{15}$ &nbsp;&nbsp;&nbsp; d. $\frac{2}{15}$</p>
+            <p>2. Hasil dari $2,5 \times 0,3 = \dots$</p>
+            <p>3. Budi memiliki tali sepanjang $3\frac{1}{2}$ meter. Dipotong menjadi beberapa bagian yang masing-masing panjangnya $\frac{1}{4}$ meter. Berapa potongan tali yang diperoleh Budi?</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Ibu membeli $4,5\text{ kg}$ beras. Sebanyak $1\frac{3}{4}\text{ kg}$ dimasak untuk makan siang. Kemudian Ibu membeli lagi $2,25\text{ kg}$ beras. Berapa kg total persediaan beras Ibu sekarang dalam bentuk desimal?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>1. Jawaban Soal Mandiri:</b></p>
+            <p>• $\frac{2}{5} + \frac{1}{3} = \frac{6}{15} + \frac{5}{15} = \mathbf{\frac{11}{15}}$ (Jawaban b).</p>
+            <p>• $2,5 \times 0,3 \rightarrow 25 \times 3 = 75$ (2 digit koma) = $\mathbf{0,75}$.</p>
+            <p>• $3\frac{1}{2} \div \frac{1}{4} = \frac{7}{2} \times \frac{4}{1} = \frac{28}{2} = \mathbf{14\text{ potongan}}$.</p>
+            <p><b>2. Jawaban Soal HOTS:</b></p>
+            <p>• Ubah $1\frac{3}{4}$ ke desimal: $1\frac{3}{4} = 1,75\text{ kg}$.</p>
+            <p>• Hitung sisa beras: $4,50 - 1,75 = 2,75\text{ kg}$.</p>
+            <p>• Tambah beras baru: $2,75 + 2,25 = \mathbf{5,00\text{ kg}\text{ (atau } 5\text{ kg)}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>LUAR BIASA!</b> Kamu telah berhasil menguasai materi Operasi Hitung Pecahan &amp; Desimal Kelas 5 SD. Jangan lupa simpan berkas ini sebagai <code>kelas5-bab2.html</code> dan gabungkan ke portal utama kamu ya!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 5</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
