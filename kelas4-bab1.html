@@ -10,20 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- KaTeX CSS dengan Fallback -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" id="katex-css">
-    <script>
-        // Fallback jika CDN jsDelivr terblokir/gagal
-        document.getElementById('katex-css').onerror = function() {
-            this.href = 'https://unpkg.com/katex@0.16.8/dist/katex.min.css';
-        };
-    </script>
-
-    <!-- KaTeX Core JS -->
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" id="katex-js"></script>
-
-    <!-- KaTeX Auto-Render JS -->
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" id="katex-render-js"></script>
+    <!-- CSS KaTeX via Cloudflare (Sangat Stabil & Anti-Blokir di Indonesia) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
 
     <style>
         :root {
@@ -77,7 +65,7 @@
 
         .btn-home { background: var(--secondary); }
 
-        /* KARTU HALAMAN A5 PORTRAIT RESPONSIF */
+        /* ATURAN ANTI-TERPOTONG & MARGIN AMAN UNTUK A5 */
         .page-card {
             width: 148mm;
             min-height: 208mm;
@@ -89,7 +77,8 @@
             border-radius: 6px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 5px;
             box-sizing: border-box;
             overflow: hidden;
             page-break-after: always;
@@ -103,19 +92,13 @@
             break-after: auto;
         }
 
-        .page-content {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
         .page-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 2px solid var(--primary);
-            padding-bottom: 3px;
-            margin-bottom: 3px;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
         }
 
         .header-left {
@@ -161,10 +144,10 @@
             white-space: pre; 
             line-height: 1.2; 
         }
-        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
-        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 2px 0; }
-        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
-        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 2px 0; }
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
 
         .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
         .katex-display { margin: 2px 0 !important; }
@@ -181,6 +164,12 @@
             font-weight: 500;
             border-top: 1px solid #E2E8F0;
             padding-top: 3px;
+        }
+
+        table, img {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            max-width: 100%;
         }
 
         @media screen and (max-width: 650px) {
@@ -211,57 +200,55 @@
 
     <!-- PAGE 1 -->
     <div class="page-card">
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-left">
-                    <span class="chapter-badge">BAB 1</span>
-                    <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
-                </div>
-                <span class="page-number">Halaman 1</span>
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
             </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
 
-            <div class="section-title">1. Mengenal &amp; Membaca Bilangan Cacah s.d. 100.000</div>
-            
-            <div class="info-box">
-                <div class="box-title">💡 Teori Ringkas &amp; Analogi</div>
-                <p>Bayangkan kamu sedang bermain game RPG online! Karaktermu mengumpulkan koin emas. Jika kamu punya 10 koin, itu 1 puluhan. Jika punya 100 koin, itu 1 ratusan. Bagaimana kalau kamu punya <b>45.238</b> koin?</p>
-                <p>Bilangan cacah sampai $100.000$ terdiri dari lima angka (digit). Setiap posisi memiliki nilai tempat tersendiri:</p>
-            </div>
+        <div class="section-title">1. Mengenal &amp; Membaca Bilangan Cacah s.d. 100.000</div>
+        
+        <div class="info-box">
+            <div class="box-title">💡 Teori Ringkas &amp; Analogi</div>
+            <p>Bayangkan kamu sedang bermain game RPG online! Karaktermu mengumpulkan koin emas. Jika kamu punya 10 koin, itu 1 puluhan. Jika punya 100 koin, itu 1 ratusan. Bagaimana kalau kamu punya <b>45.238</b> koin?</p>
+            <p>Bilangan cacah sampai 100.000 terdiri dari lima angka (digit). Setiap posisi memiliki nilai tempat tersendiri:</p>
+        </div>
 
-            <div class="concept-map">[4] Puluh Ribuan -> 40.000
+        <div class="concept-map">[4] Puluh Ribuan -> 40.000
  [5] Ribuan       ->  5.000
   [2] Ratusan      ->    200
    [3] Puluhan      ->     30
     [8] Satuan       ->      8</div>
 
-            <div class="formula-box">
-                <div class="box-title">📐 Nilai Tempat &amp; Nilai Angka</div>
-                <p>Pada bilangan $45.238$:</p>
-                <p>• <b>4</b> menempati <i>Puluh Ribuan</i> $\rightarrow$ Nilai Angka = $40.000$</p>
-                <p>• <b>5</b> menempati <i>Ribuan</i> $\rightarrow$ Nilai Angka = $5.000$</p>
-                <p>• <b>2</b> menempati <i>Ratusan</i> $\rightarrow$ Nilai Angka = $200$</p>
-                <p>• <b>3</b> menempati <i>Puluhan</i> $\rightarrow$ Nilai Angka = $30$</p>
-                <p>• <b>8</b> menempati <i>Satuan</i> $\rightarrow$ Nilai Angka = $8$</p>
-            </div>
+        <div class="formula-box">
+            <div class="box-title">📐 Nilai Tempat &amp; Nilai Angka</div>
+            <p>Pada bilangan 45.238:</p>
+            <p>• <b>4</b> menempati <i>Puluh Ribuan</i> $\rightarrow$ Nilai Angka = 40.000</p>
+            <p>• <b>5</b> menempati <i>Ribuan</i> $\rightarrow$ Nilai Angka = 5.000</p>
+            <p>• <b>2</b> menempati <i>Ratusan</i> $\rightarrow$ Nilai Angka = 200</p>
+            <p>• <b>3</b> menempati <i>Puluhan</i> $\rightarrow$ Nilai Angka = 30</p>
+            <p>• <b>8</b> menempati <i>Satuan</i> $\rightarrow$ Nilai Angka = 8</p>
+        </div>
 
-            <div class="example-box">
-                <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
-                <p><b>Soal:</b> Ibu Budi membeli sebuah kulkas baru seharga Rp48.550. Bagaimanakah cara membaca harga kulkas tersebut dan berapa nilai tempat angka $8$?</p>
-                <p><b>Pembahasan:</b></p>
-                <ol>
-                    <li>Pisahkan tiga angka dari belakang dengan titik: $48.550$.</li>
-                    <li>Dibaca: <b>"Empat puluh delapan ribu lima ratus lima puluh rupiah"</b>.</li>
-                    <li>Angka $8$ berada di posisi keempat dari belakang (posisi ribuan), sehingga nilai tempat angka $8$ adalah <b>Ribuan</b> (Nilainya = $8.000$).</li>
-                </ol>
-            </div>
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ibu Budi membeli sebuah kulkas baru seharga Rp48.550. Bagaimanakah cara membaca harga kulkas tersebut dan berapa nilai tempat angka 8?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Pisahkan tiga angka dari belakang dengan titik: 48.550.</li>
+                <li>Dibaca: <b>"Empat puluh delapan ribu lima ratus lima puluh rupiah"</b>.</li>
+                <li>Angka 8 berada di posisi keempat dari belakang (posisi ribuan), sehingga nilai tempat angka 8 adalah <b>Ribuan</b> (Nilainya = 8.000).</li>
+            </ol>
+        </div>
 
-            <div class="callout-box">
-                <div class="box-title">⚠️ AWAS KELIRU!</div>
-                <p>Beda antara <b>Nilai Tempat</b> dan <b>Nilai Angka</b>:</p>
-                <p>• <b>Nilai Tempat</b> berupa NAMA POSISI (contoh: <i>Ribuan</i>).</p>
-                <p>• <b>Nilai Angka</b> berupa NOMOR BANYAKNYA (contoh: $8.000$).</p>
-                <p>💡 <b>Tips Cepat:</b> Selalu beri tanda titik (<code>.</code>) setiap 3 angka dari kanan untuk mempermudah membaca ribuan!</p>
-            </div>
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Beda antara <b>Nilai Tempat</b> dan <b>Nilai Angka</b>:</p>
+            <p>• <b>Nilai Tempat</b> berupa NAMA POSISI (contoh: <i>Ribuan</i>).</p>
+            <p>• <b>Nilai Angka</b> berupa NOMOR BANYAKNYA (contoh: 8.000).</p>
+            <p>💡 <b>Tips Cepat:</b> Selalu beri tanda titik (<code>.</code>) setiap 3 angka dari kanan untuk mempermudah membaca ribuan!</p>
         </div>
 
         <div class="page-footer">
@@ -272,52 +259,50 @@
 
     <!-- PAGE 2 -->
     <div class="page-card">
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-left">
-                    <span class="chapter-badge">BAB 1</span>
-                    <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
-                </div>
-                <span class="page-number">Halaman 2</span>
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
             </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
 
-            <div class="section-title">2. Menuliskan &amp; Menguraikan Bilangan (Bentuk Panjang)</div>
+        <div class="section-title">2. Menuliskan &amp; Menguraikan Bilangan (Bentuk Panjang)</div>
 
-            <div class="info-box">
-                <div class="box-title">🧩 Teori Ringkas &amp; Analogi</div>
-                <p>Menguraikan bilangan itu seperti membongkar mainan bongkar-pasang (Lego)! Satu bangunan rumah utuh bisa kita preteli menjadi komponen atap, dinding, dan alasnya.</p>
-                <p>• <b>Bentuk Standar:</b> $67.409$</p>
-                <p>• <b>Bentuk Panjang:</b> Menguraikan setiap angka berdasarkan nilai tempatnya dengan tanda tambah ($+$).</p>
-            </div>
+        <div class="info-box">
+            <div class="box-title">🧩 Teori Ringkas &amp; Analogi</div>
+            <p>Menguraikan bilangan itu seperti membongkar mainan bongkar-pasang (Lego)! Satu bangunan rumah utuh bisa kita preteli menjadi komponen atap, dinding, dan alasnya.</p>
+            <p>• <b>Bentuk Standar:</b> 67.409</p>
+            <p>• <b>Bentuk Panjang:</b> Menguraikan setiap angka berdasarkan nilai tempatnya dengan tanda tambah (+).</p>
+        </div>
 
-            <div class="formula-box">
-                <div class="box-title">📐 Formula Bentuk Panjang</div>
-                $$ \text{Bentuk Panjang} = \text{Puluh Ribuan} + \text{Ribuan} + \text{Ratusan} + \text{Puluhan} + \text{Satuan} $$
-                <p><b>Contoh Komposisi &amp; Dekomposisi:</b></p>
-                $$ 67.409 = 60.000 + 7.000 + 400 + 0 + 9 $$
-                $$ 67.409 = 60.000 + 7.000 + 400 + 9 $$
-            </div>
+        <div class="formula-box">
+            <div class="box-title">📐 Formula Bentuk Panjang</div>
+            <p>$$ \text{Bentuk Panjang} = \text{Puluh Ribuan} + \text{Ribuan} + \text{Ratusan} + \text{Puluhan} + \text{Satuan} $$</p>
+            <p><b>Contoh Komposisi &amp; Dekomposisi:</b></p>
+            <p>$$ 67.409 = 60.000 + 7.000 + 400 + 0 + 9 $$</p>
+            <p>$$ 67.409 = 60.000 + 7.000 + 400 + 9 $$</p>
+        </div>
 
-            <div class="example-box">
-                <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
-                <p><b>Soal:</b> Sebuah stadion sepak bola menampung $73.054$ penonton. Uraikan bilangan $73.054$ tersebut ke dalam bentuk panjang nilai tempatnya!</p>
-                <p><b>Pembahasan:</b></p>
-                <ul>
-                    <li>Angka $7 \rightarrow 70.000$ (Puluh Ribuan)</li>
-                    <li>Angka $3 \rightarrow 3.000$ (Ribuan)</li>
-                    <li>Angka $0 \rightarrow 0$ (Ratusan)</li>
-                    <li>Angka $5 \rightarrow 50$ (Puluhan)</li>
-                    <li>Angka $4 \rightarrow 4$ (Satuan)</li>
-                </ul>
-                <p>Jadi, bentuk panjangnya adalah:</p>
-                $$ 73.054 = 70.000 + 3.000 + 50 + 4 $$
-            </div>
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah stadion sepak bola menampung 73.054 penonton. Uraikan bilangan 73.054 tersebut ke dalam bentuk panjang nilai tempatnya!</p>
+            <p><b>Pembahasan:</b></p>
+            <ul>
+                <li>Angka 7 $\rightarrow$ 70.000 (Puluh Ribuan)</li>
+                <li>Angka 3 $\rightarrow$ 3.000 (Ribuan)</li>
+                <li>Angka 0 $\rightarrow$ 0 (Ratusan)</li>
+                <li>Angka 5 $\rightarrow$ 50 (Puluhan)</li>
+                <li>Angka 4 $\rightarrow$ 4 (Satuan)</li>
+            </ul>
+            <p>Jadi, bentuk panjangnya adalah:</p>
+            <p>$$ 73.054 = 70.000 + 3.000 + 50 + 4 $$</p>
+        </div>
 
-            <div class="callout-box">
-                <div class="box-title">⚠️ AWAS KELIRU!</div>
-                <p>Angka $0$ di tengah bilangan (seperti $0$ ratusan pada $73.054$) sering membuat bingung. Angka $0$ boleh tidak ditulis dalam penjumlahan panjang, namun posisinya <b>TIDAK BOLEH</b> melompati nilai tempat lain saat membaca!</p>
-                <p>💡 <b>Tips:</b> Jika menemukan angka $0$, fokus saja pada angka bernilai bukan nol di sekitarnya.</p>
-            </div>
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Angka 0 di tengah bilangan (seperti 0 ratusan pada 73.054) sering membuat bingung. Angka 0 boleh tidak ditulis dalam penjumlahan panjang, namun posisinya <b>TIDAK BOLEH</b> melompati nilai tempat lain saat membaca!</p>
+            <p>💡 <b>Tips:</b> Jika menemukan angka 0, fokus saja pada angka bernilai bukan nol di sekitarnya.</p>
         </div>
 
         <div class="page-footer">
@@ -328,56 +313,54 @@
 
     <!-- PAGE 3 -->
     <div class="page-card">
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-left">
-                    <span class="chapter-badge">BAB 1</span>
-                    <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
-                </div>
-                <span class="page-number">Halaman 3</span>
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
             </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
 
-            <div class="section-title">3. Membandingkan &amp; Mengurutkan Bilangan</div>
+        <div class="section-title">3. Membandingkan &amp; Mengurutkan Bilangan</div>
 
-            <div class="info-box">
-                <div class="box-title">⚔️ Teori Ringkas &amp; Analogi</div>
-                <p>Siapa yang menang dalam adu skor game? Tentu pemain dengan skor paling tinggi! Saat membandingkan bilangan $5$ digit, bayangkan kita membandingkan kekuatan superhero dari digit yang paling kiri (nilai tempat terbesar).</p>
-                <p>• Simbol Perbandingan:</p>
-                <ul>
-                    <li><code>&gt;</code> artinya <b>lebih dari</b> (lebih besar)</li>
-                    <li><code>&lt;</code> artinya <b>kurang dari</b> (lebih kecil)</li>
-                    <li><code>=</code> artinya <b>sama dengan</b></li>
-                </ul>
-            </div>
+        <div class="info-box">
+            <div class="box-title">⚔️ Teori Ringkas &amp; Analogi</div>
+            <p>Siapa yang menang dalam adu skor game? Tentu pemain dengan skor paling tinggi! Saat membandingkan bilangan 5 digit, bayangkan kita membandingkan kekuatan superhero dari digit yang paling kiri (nilai tempat terbesar).</p>
+            <p>• Simbol Perbandingan:</p>
+            <ul>
+                <li><code>&gt;</code> artinya <b>lebih dari</b> (lebih besar)</li>
+                <li><code>&lt;</code> artinya <b>kurang dari</b> (lebih kecil)</li>
+                <li><code>=</code> artinya <b>sama dengan</b></li>
+            </ul>
+        </div>
 
-            <div class="formula-box">
-                <div class="box-title">📐 Aturan Membandingkan 2 Bilangan</div>
-                <ol style="text-align: left;">
-                    <li>Cek jumlah digit (bilangan dengan digit lebih banyak selalu lebih besar).</li>
-                    <li>Jika digit sama ($5$ digit), bandingkan digit <b>Puluh Ribuan</b>.</li>
-                    <li>Jika sama, bandingkan digit <b>Ribuan</b>, lalu <b>Ratusan</b>, dst.</li>
-                </ol>
-                $$ 54.320 \quad \text{VS} \quad 54.710 $$
-                <p>Puluh Ribuan: $5 = 5$ | Ribuan: $4 = 4$ | Ratusan: $3 &lt; 7 \rightarrow$ Maka $54.320 &lt; 54.710$</p>
-            </div>
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Membandingkan 2 Bilangan</div>
+            <ol style="text-align: left;">
+                <li>Cek jumlah digit (bilangan dengan digit lebih banyak selalu lebih besar).</li>
+                <li>Jika digit sama (5 digit), bandingkan digit <b>Puluh Ribuan</b>.</li>
+                <li>Jika sama, bandingkan digit <b>Ribuan</b>, lalu <b>Ratusan</b>, dst.</li>
+            </ol>
+            <p>$$ 54.320 \quad \text{VS} \quad 54.710 $$</p>
+            <p>Puluh Ribuan: 5 = 5 | Ribuan: 4 = 4 | Ratusan: $3 &lt; 7 \rightarrow$ Maka $54.320 &lt; 54.710$</p>
+        </div>
 
-            <div class="example-box">
-                <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
-                <p><b>Soal:</b> Tiga toko elektronik menjual laptop dengan harga sebagai berikut: Toko Alfa (Rp32.500), Toko Beta (Rp32.150), dan Toko Ceria (Rp31.900). Urutkan toko dari yang menjual laptop paling murah!</p>
-                <p><b>Pembahasan:</b></p>
-                <ol>
-                    <li>Bandingkan $32.500, 32.150, 31.900$.</li>
-                    <li>Lihat digit puluh ribuan &amp; ribuan: $31.900$ memiliki ribuan $1$ (paling kecil).</li>
-                    <li>Bandingkan $32.500$ dan $32.150$: Ratusan $1 &lt; 5$, maka $32.150 &lt; 32.500$.</li>
-                </ol>
-                <p>Urutan dari yang termurah: <b>Toko Ceria (Rp31.900), Toko Beta (Rp32.150), Toko Alfa (Rp32.500)</b>.</p>
-            </div>
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Tiga toko elektronik menjual laptop dengan harga sebagai berikut: Toko Alfa (Rp32.500), Toko Beta (Rp32.150), dan Toko Ceria (Rp31.900). Urutkan toko dari yang menjual laptop paling murah!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Bandingkan 32.500, 32.150, 31.900.</li>
+                <li>Lihat digit puluh ribuan &amp; ribuan: 31.900 memiliki ribuan 1 (paling kecil).</li>
+                <li>Bandingkan 32.500 dan 32.150: Ratusan $1 &lt; 5$, maka $32.150 &lt; 32.500$.</li>
+            </ol>
+            <p>Urutan dari yang termurah: <b>Toko Ceria (Rp31.900), Toko Beta (Rp32.150), Toko Alfa (Rp32.500)</b>.</p>
+        </div>
 
-            <div class="callout-box">
-                <div class="box-title">💡 TIPS CEPAT (METODE MULUT BUAYA)</div>
-                <p>Tanda <code>&gt;</code> dan <code>&lt;</code> seperti mulut buaya yang lapar. Mulut buaya selalu <b>MENGADAP KE BILANGAN YANG LEBIH BESAR</b>!</p>
-                <p>Contoh: $50.000 &gt; 20.000$ (Buaya menghadap ke $50.000$).</p>
-            </div>
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT (METODE MULUT BUAYA)</div>
+            <p>Tanda <code>&gt;</code> dan <code>&lt;</code> seperti mulut buaya yang lapar. Mulut buaya selalu <b>MENGHADAP KE BILANGAN YANG LEBIH BESAR</b>!</p>
+            <p>Contoh: 50.000 &gt; 20.000 (Buaya menghadap ke 50.000).</p>
         </div>
 
         <div class="page-footer">
@@ -388,62 +371,64 @@
 
     <!-- PAGE 4 -->
     <div class="page-card">
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-left">
-                    <span class="chapter-badge">BAB 1</span>
-                    <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
-                </div>
-                <span class="page-number">Halaman 4</span>
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
             </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
 
-            <div class="section-title">4. Penjumlahan Bilangan Cacah (Dengan Simpanan)</div>
+        <div class="section-title">4. Penjumlahan Bilangan Cacah (Dengan Simpanan)</div>
 
-            <div class="info-box">
-                <div class="box-title">💰 Teori Ringkas &amp; Analogi</div>
-                <p>Pernahkah kamu menggabungkan tabungan di celengan A dan celengan B? Penjumlahan bersusun adalah cara merapikan hitungan tabunganmu agar tidak ada koin yang tercecer.</p>
-                <p>• Selalu sejajarkan nilai tempat (satuan lurus satuan, puluhan lurus puluhan).</p>
-                <p>• Hitung dari <b>kanan (satuan) ke kiri (puluh ribuan)</b>.</p>
-            </div>
+        <div class="info-box">
+            <div class="box-title">💰 Teori Ringkas &amp; Analogi</div>
+            <p>Pernahkah kamu menggabungkan tabungan di celengan A dan celengan B? Penjumlahan bersusun adalah cara merapikan hitungan tabunganmu agar tidak ada koin yang tercecer.</p>
+            <p>• Selalu sejajarkan nilai tempat (satuan lurus satuan, puluhan lurus puluhan).</p>
+            <p>• Hitung dari <b>kanan (satuan) ke kiri (puluh ribuan)</b>.</p>
+        </div>
 
-            <div class="formula-box">
-                <div class="box-title">📐 Format Penjumlahan Bersusun</div>
-                $$
-                \begin{array}{cccccc}
-                 &amp; 2 &amp; 8 &amp; 4 &amp; 6 &amp; 5 \\
-                + &amp; 1 &amp; 5 &amp; 7 &amp; 2 &amp; 8 \\
-                \hline
-                 &amp; 4 &amp; 4 &amp; 1 &amp; 9 &amp; 3
-                \end{array}
-                $$
-                <p style="text-align: left; font-size: 8.5px; margin-top: 4px;"><b>Catatan Simpanan:</b><br>
-                • $5+8 = 13$ (tulis $3$, simpan $1$ ke puluhan)<br>
-                • $1+6+2 = 9$<br>
-                • $4+7 = 11$ (tulis $1$, simpan $1$ ke ribuan)<br>
-                • $1+8+5 = 14$ (tulis $4$, simpan $1$ ke puluh ribuan)<br>
-                • $1+2+1 = 4$</p>
-            </div>
+        <div class="formula-box">
+            <div class="box-title">📐 Format Penjumlahan Bersusun</div>
+            <p>
+            $$
+            \begin{array}{cccccc}
+             &amp; 2 &amp; 8 &amp; 4 &amp; 6 &amp; 5 \\
+            + &amp; 1 &amp; 5 &amp; 7 &amp; 2 &amp; 8 \\
+            \hline
+             &amp; 4 &amp; 4 &amp; 1 &amp; 9 &amp; 3
+            \end{array}
+            $$
+            </p>
+            <p style="text-align: left; font-size: 8.5px; margin-top: 4px;"><b>Catatan Simpanan:</b><br>
+            • 5 + 8 = 13 (tulis 3, simpan 1 ke puluhan)<br>
+            • 1 + 6 + 2 = 9<br>
+            • 4 + 7 = 11 (tulis 1, simpan 1 ke ribuan)<br>
+            • 1 + 8 + 5 = 14 (tulis 4, simpan 1 ke puluh ribuan)<br>
+            • 1 + 2 + 1 = 4</p>
+        </div>
 
-            <div class="example-box">
-                <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
-                <p><b>Soal:</b> Ayah membeli sepeda motor seharga Rp18.650.000 dan perlengkapan helm seharga Rp2.475.000. Berapa total uang yang dikeluarkan Ayah?</p>
-                <p><b>Pembahasan:</b></p>
-                $$
-                \begin{array}{cccccc}
-                 &amp; 1 &amp; 8 &amp; 6 &amp; 5 &amp; 0 \\
-                + &amp; &amp; 2 &amp; 4 &amp; 7 &amp; 5 \\
-                \hline
-                 &amp; 2 &amp; 1 &amp; 1 &amp; 2 &amp; 5
-                \end{array}
-                $$
-                <p>Jadi, total uang yang dikeluarkan Ayah adalah <b>Rp21.125.000</b>.</p>
-            </div>
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ayah membeli sepeda motor seharga Rp18.650.000 dan perlengkapan helm seharga Rp2.475.000. Berapa total uang yang dikeluarkan Ayah?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>
+            $$
+            \begin{array}{cccccc}
+             &amp; 1 &amp; 8 &amp; 6 &amp; 5 &amp; 0 \\
+            + &amp; &amp; 2 &amp; 4 &amp; 7 &amp; 5 \\
+            \hline
+             &amp; 2 &amp; 1 &amp; 1 &amp; 2 &amp; 5
+            \end{array}
+            $$
+            </p>
+            <p>Jadi, total uang yang dikeluarkan Ayah adalah <b>Rp21.125.000</b>.</p>
+        </div>
 
-            <div class="callout-box">
-                <div class="box-title">⚠️ AWAS KELIRU!</div>
-                <p>Kesalahan tersering adalah lupa menambahkan <b>angka simpanan</b> di atas nilai tempat berikutnya.</p>
-                <p>💡 <b>Tips:</b> Tulis angka simpanan kecil-kecil di bagian paling atas kolom agar tidak terlewat saat menjumlahkan!</p>
-            </div>
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Kesalahan tersering adalah lupa menambahkan <b>angka simpanan</b> di atas nilai tempat berikutnya.</p>
+            <p>💡 <b>Tips:</b> Tulis angka simpanan kecil-kecil di bagian paling atas kolom agar tidak terlewat saat menjumlahkan!</p>
         </div>
 
         <div class="page-footer">
@@ -452,12 +437,208 @@
         </div>
     </div>
 
-    <!-- PAGE 5 -->
+   <!-- PAGE 5 -->
     <div class="page-card">
-        <div class="page-content">
-            <div class="page-header">
-                <div class="header-left">
-                    <span class="chapter-badge">BAB 1</span>
-                    <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
-                </div>
-  
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Pengurangan Bilangan Cacah (Teknik Meminjam)</div>
+
+        <div class="info-box">
+            <div class="box-title">🛍️ Teori Ringkas &amp; Analogi</div>
+            <p>Bagaimana jika kamu ingin membeli jajan seharga Rp7.000, tapi di saku hanya ada lembaran Rp10.000? Kamu harus "menukarkan" atau "meminjam" pecahan yang lebih besar!</p>
+            <p>• Dalam pengurangan bersusun, jika angka atas <b>lebih kecil</b> dari angka bawah, kamu harus <b>meminjam 1 puluhan</b> dari nilai tempat di sebelah kirinya.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Format Pengurangan Bersusun (Meminjam)</div>
+            <p>
+            $$
+            \begin{array}{cccccc}
+             &amp; 5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+            - &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 0 \\
+            \hline
+             &amp; 2 &amp; 6 &amp; 5 &amp; 5 &amp; 0
+            \end{array}
+            $$
+            </p>
+            <p style="font-size: 8.5px; margin-top: 3px;"><i>Nilai 50.000 dipinjam berantai hingga angka 0 pada ratusan &amp; puluhan menjadi 9, dan satuan/puluhan terdepan menjadi 10.</i></p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah panen raya menghasilkan 42.150 kg beras. Sebanyak 18.375 kg beras telah dijual. Berapa kg sisa beras panen tersebut?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>
+            $$
+            \begin{array}{cccccc}
+             &amp; 4 &amp; 2 &amp; 1 &amp; 5 &amp; 0 \\
+            - &amp; 1 &amp; 8 &amp; 3 &amp; 7 &amp; 5 \\
+            \hline
+             &amp; 2 &amp; 3 &amp; 7 &amp; 7 &amp; 5
+            \end{array}
+            $$
+            </p>
+            <ul>
+                <li>Satuan: 0 - 5 $\rightarrow$ pinjam 1 dari 5 puluhan $\rightarrow$ (10 - 5 = 5).</li>
+                <li>Puluhan: Sisa 4 $\rightarrow$ pinjam 1 dari ratusan $\rightarrow$ (14 - 7 = 7).</li>
+                <li>Ratusan: Sisa 0 $\rightarrow$ pinjam 1 dari ribuan $\rightarrow$ (10 - 3 = 7).</li>
+                <li>Ribuan: Sisa 1 $\rightarrow$ pinjam 1 dari puluh ribuan $\rightarrow$ (11 - 8 = 3).</li>
+                <li>Puluh Ribuan: Sisa 3 - 1 = 2.</li>
+            </ul>
+            <p>Sisa beras adalah <b>23.775 kg</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Jangan lupa mencoret dan menguraikan angka yang sudah dipinjam! Sering kali siswa lupa mencoret sehingga nilainya tidak berkurang.</p>
+            <p>💡 <b>Tips Cepat:</b> Cek hasil penguranganmu dengan penjumlahan: $\text{Hasil} + \text{Pengurang} = \text{Angka Awal}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Perkalian &amp; Pembagian (Porogapit Sederhana)</div>
+
+        <div class="info-box">
+            <div class="box-title">⚙️ Teori Ringkas &amp; Analogi</div>
+            <p>• <b>Perkalian:</b> Penjumlahan berulang. (Contoh: 4 × 250 = 250 + 250 + 250 + 250).</p>
+            <p>• <b>Pembagian (Porogapit):</b> Pengurangan berulang sampai habis (0), atau membagi secara adil ke dalam beberapa wadah.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Porogapit (Pembagian Bersusun Kurung)</div>
+            <p style="font-size: 8.5px; margin-bottom: 4px;">Langkah Porogapit: <b>Bagi $\rightarrow$ Kali $\rightarrow$ Kurang $\rightarrow$ Turunkan angka berikutnya.</b></p>
+            <p>
+            $$
+            \begin{array}{r}
+            125 \\
+            3 \overline{) 375 } \\
+            \underline{3 \phantom{75}} \downarrow \\
+            07 \phantom{5} \\
+            \underline{6 \phantom{5}} \downarrow \\
+            15 \\
+            \underline{15} \\
+            0
+            \end{array}
+            $$
+            </p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Pak Roni memiliki 1.250 bibit ikan lele. Ia ingin membagikan bibit tersebut secara merata ke dalam 5 kolam besar. Berapa ekor bibit ikan lele di setiap kolam?</p>
+            <p><b>Pembahasan:</b> Gunakan Porogapit $1.250 \div 5$:</p>
+            <ol>
+                <li>$1 \div 5$ (tidak cukup, ambil 2 digit $\rightarrow 12$).</li>
+                <li>$12 \div 5 = 2$ (sisa 2). Tulis 2 di atas. $2 \times 5 = 10$.</li>
+                <li>$12 - 10 = 2$. Turunkan angka 5 $\rightarrow 25$.</li>
+                <li>$25 \div 5 = 5$. Tulis 5 di atas. $5 \times 5 = 25$.</li>
+                <li>$25 - 25 = 0$. Turunkan angka 0 $\rightarrow 0 \div 5 = 0$. Tulis 0 di atas.</li>
+            </ol>
+            <p>$$ 1.250 \div 5 = 250 $$</p>
+            <p>Jadi, setiap kolam berisi <b>250 ekor bibit ikan lele</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Saat ada angka 0 di akhir atau tengah yang diturunkan tapi tidak bisa dibagi, <b>JANGAN LUPA</b> untuk tetap menulis angka 0 pada hasil bagi di atas!</p>
+            <p>💡 <b>Tips:</b> Hafalkan perkalian 1 sampai 10 agar pengerjaan porogapit $10\times$ lebih cepat!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 1</span>
+                <span class="chapter-title">Bilangan Cacah Sampai 100.000</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Tantangan Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Nilai tempat angka 7 pada bilangan 87.305 adalah...</p>
+            <p style="padding-left: 10px;">a. Ratusan &nbsp;&nbsp;&nbsp; b. Ribuan &nbsp;&nbsp;&nbsp; c. Puluh Ribuan &nbsp;&nbsp;&nbsp; d. Satuan</p>
+            <p>2. Hasil dari 45.200 - 18.650 = ...</p>
+            <p>3. Sebuah pabrik plastik memproduksi 2.450 sedotan setiap jam. Berapa total sedotan yang dihasilkan dalam waktu 6 jam?</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Ahmad, Budi, dan Cici mengumpulkan dana bantuan bencana.</p>
+            <p>• Uang Ahmad = Rp35.000.</p>
+            <p>• Uang Budi = Rp12.500 <b>lebih banyak</b> dari uang Ahmad.</p>
+            <p>• Uang Cici = Rp10.000 <b>lebih sedikit</b> dari total uang Ahmad dan Budi digabungkan.</p>
+            <p>Berapakah total seluruh uang bantuan yang berhasil dikumpulkan oleh ketiga anak tersebut?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan Ringkas</div>
+            <p><b>Jawaban Soal Mandiri:</b></p>
+            <p>1. <b>b. Ribuan</b> (angka 7 posisi ke-4 dari kanan).</p>
+            <p>2. 45.200 - 18.650 = <b>26.550</b>.</p>
+            <p>3. 2.450 × 6 = <b>14.700</b> sedotan.</p>
+            <p><b>Jawaban Soal HOTS:</b></p>
+            <p>1. Uang Ahmad = Rp35.000</p>
+            <p>2. Uang Budi = 35.000 + 12.500 = Rp47.500</p>
+            <p>3. Total Ahmad + Budi = 35.000 + 47.500 = Rp82.500</p>
+            <p>4. Uang Cici = 82.500 - 10.000 = Rp72.500</p>
+            <p>5. <b>Total Seluruhnya</b> = 35.000 + 47.500 + 72.500 = <b>Rp155.000</b></p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>SELAMAT!</b> Kamu telah menyelesaikan seluruh materi Bab 1 Bilangan Cacah sampai 100.000. Jangan ragu untuk mengulang kembali latihan soal di atas sampai kamu benar-benar paham ya! Siap untuk lanjut ke Bab 2?</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
