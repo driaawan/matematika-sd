@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 4 Bab 3</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Mengenal Konsep Sudut &amp; Jenis-Jenis Sudut</div>
+        
+        <div class="info-box">
+            <div class="box-title">📐 Teori Ringkas &amp; Analogi Jarum Jam</div>
+            <p>Sudut dibentuk oleh dua garis lurus yang saling bertemu pada satu titik (titik sudut).</p>
+            <p><b>Analogi:</b> Bayangkan dua jarum jam yang berputar dari titik tengah yang sama. Makin lebar jarak bukaan kedua jarum jam tersebut, makin besar sudut yang terbentuk!</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Komponen &amp; Satuan Sudut</div>
+            <p style="text-align: left;">• <b>Titik Pertemuan Garis:</b> Titik Sudut</p>
+            <p style="text-align: left;">• <b>Dua Garis Pengapit:</b> Kaki Sudut</p>
+            <p style="text-align: left;">• <b>Satuan Baku Ukuran Sudut:</b> Derajat (diberi simbol °)</p>
+            <p style="text-align: left;">• <b>Sudut Satu Putaran Penuh:</b> $360^\circ$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Jenis-Jenis Sudut Utama</div>
+            <ol>
+                <li><b>Sudut Lancip:</b> Besar sudut kurang dari $90^\circ$ (&lt; $90^\circ$). Contoh: Ujung pensil runcing, jarum jam pukul 01.00.</li>
+                <li><b>Sudut Siku-Siku:</b> Besar sudut tepat $90^\circ$ (= $90^\circ$). Contoh: Pojok buku, jarum jam pukul 03.00.</li>
+                <li><b>Sudut Tumpul:</b> Besar sudut antara $90^\circ$ dan $180^\circ$ ($90^\circ &lt; x &lt; 180^\circ$). Contoh: Atap rumah, jarum jam pukul 04.00.</li>
+                <li><b>Sudut Lurus:</b> Besar sudut tepat $180^\circ$ (= $180^\circ$). Contoh: Garis lurus, jarum jam pukul 06.00.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Panjang atau pendeknya kaki sudut <b>TIDAK MEMPENGARUHI</b> besar sudut! Besar sudut hanya ditentukan oleh lebar bukaan antara kedua kaki sudutnya.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Mengukur &amp; Melukis Sudut dengan Busur Derajat</div>
+
+        <div class="info-box">
+            <div class="box-title">🧭 Teori Ringkas &amp; Alat Pengukur</div>
+            <p>Alat baku untuk mengukur dan menggambar besar sudut adalah <b>Busur Derajat</b>. Busur derajat berbentuk setengah lingkaran dan memiliki dua deret skala angka ($0^\circ$ sampai $180^\circ$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Langkah Mengukur Sudut dengan Busur</div>
+            <ol style="text-align: left;">
+                <li>Himpitkan titik pusat busur derajat tepat pada titik sudut.</li>
+                <li>Himpitkan salah satu kaki sudut dengan garis alas busur (skala $0^\circ$).</li>
+                <li>Lihat kaki sudut lainnya, lalu baca angka pada busur derajat yang terhitung mulai dari angka $0^\circ$.</li>
+            </ol>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Budi mengukur sudut bukaan pintu rumahnya. Salah satu kaki pintu berhimpit pada angka $0^\circ$ bagian dalam, dan kaki pintu lainnya menunjuk tepat pada angka $110^\circ$. Tentukan besar dan jenis sudut bukaan pintu tersebut!</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Skala yang dibaca dari angka $0^\circ$ menunjukkan angka $110^\circ$.</li>
+                <li>Besar sudut pintu = $110^\circ$.</li>
+                <li>Karena $110^\circ$ berada di antara $90^\circ$ dan $180^\circ$, maka sudut bukaan pintu tersebut adalah <b>Sudut Tumpul</b>.</li>
+            </ol>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Selalu perhatikan angka $0^\circ$ tempat kamu memulai! Jika memulai dari skala dalam (sebelah kanan), gunakan deretan angka dalam. Jika dari skala luar (sebelah kiri), gunakan deretan angka luar.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Mengenal Sifat-Sifat Bangun Datar Segiempat</div>
+
+        <div class="info-box">
+            <div class="box-title">🔷 Teori Ringkas &amp; Klasifikasi</div>
+            <p>Bangun datar segiempat adalah bangun datar yang dibatasi oleh 4 buah sisi lurus dan memiliki 4 buah titik sudut. Total jumlah seluruh sudut dalam segiempat <b>SELALU $360^\circ$</b>.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Sifat Khas Bangun Datar</div>
+            <p style="text-align: left;">• <b>Persegi:</b> Memiliki 4 sisi sama panjang, 4 sudut siku-siku ($90^\circ$), dan 2 diagonal sama panjang.</p>
+            <p style="text-align: left;">• <b>Persegi Panjang:</b> Memiliki 2 pasang sisi sejajar sama panjang, dan 4 sudut siku-siku ($90^\circ$).</p>
+            <p style="text-align: left;">• <b>Segitiga:</b> Memiliki 3 sisi dan 3 sudut. Total jumlah sudut dalam segitiga <b>SELALU $180^\circ$</b>.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Sebuah bangun segiempat memiliki 4 sisi. Dua pasang sisinya sejajar dan sama panjang, serta keempat sudutnya berbentuk siku-siku ($90^\circ$). Apakah nama bangun datar tersebut jika panjang sisinya tidak semuanya sama?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>• Sisi yang berhadapan sama panjang dan sejajar + keempat sudutnya $90^\circ$ = <b>Persegi Panjang</b>.</p>
+            <p><i>(Jika keempat sisinya sama panjang, baru dinamakan Persegi).</i></p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Persegi adalah bentuk khusus dari persegi panjang! Semua persegi adalah persegi panjang, tetapi <b>TIDAK SEMUA</b> persegi panjang adalah persegi.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Keliling Persegi &amp; Persegi Panjang</div>
+
+        <div class="info-box">
+            <div class="box-title">🏃‍♂️ Teori Ringkas &amp; Analogi Lari</div>
+            <p>Keliling bangun datar adalah <b>TOTAL PANJANG</b> seluruh garis tepi yang membatasi bangun tersebut.</p>
+            <p><b>Analogi:</b> Bayangkan kamu berlari mengelilingi lapangan sepak bola tepat di garis pinggirnya dari titik awal hingga kembali ke titik semula.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Formula Keliling ($K$)</div>
+            <p>$$ \text{Keliling Persegi} = 4 \times s $$</p>
+            <p>$$ \text{Keliling Persegi Panjang} = 2 \times (p + l) $$</p>
+            <p style="font-size: 8.5px;">Keterangan: $s = \text{sisi}$, $p = \text{panjang}$, $l = \text{lebar}$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Paman hendak memagari kebun kunyit berbentuk persegi panjang dengan panjang 12 meter dan lebar 8 meter. Berapakah panjang total kawat pagar yang dibutuhkan Paman?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>Diketahui: $p = 12\text{ m}$, $l = 8\text{ m}$.</p>
+            <p>$$ K = 2 \times (p + l) $$</p>
+            <p>$$ K = 2 \times (12 + 8) $$</p>
+            <p>$$ K = 2 \times 20 = 40\text{ meter} $$</p>
+            <p>Jadi, panjang kawat pagar yang dibutuhkan adalah <b>40 meter</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Pada rumus keliling persegi panjang, kerjakan operasi dalam kurung $(p + l)$ terlebih dahulu sebelum dikalikan dengan angka 2!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Luas Persegi &amp; Persegi Panjang</div>
+
+        <div class="info-box">
+            <div class="box-title">🧩 Teori Ringkas &amp; Analogi Ubin</div>
+            <p>Luas bangun datar adalah <b>BESARNYA AREA</b> atau permukaan yang tertutup oleh bangun tersebut.</p>
+            <p><b>Analogi:</b> Bayangkan berapa banyak ubin/keramik persegi berukuran $1\text{ cm} \times 1\text{ cm}$ yang dibutuhkan untuk menutupi seluruh lantai kamarmu tanpa ada celah.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Formula Luas ($L$)</div>
+            <p>$$ \text{Luas Persegi} = s \times s = s^2 $$</p>
+            <p>$$ \text{Luas Persegi Panjang} = p \times l $$</p>
+            <p style="font-size: 8.5px;">Satuan Luas ditandai dengan pangkat dua (persegi), contoh: $\text{cm}^2$ atau $\text{m}^2$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Lantai aula sekolah berbentuk persegi dengan panjang sisi 9 meter. Tentukan luas lantai aula sekolah tersebut!</p>
+            <p><b>Pembahasan:</b></p>
+            <p>Diketahui: $s = 9\text{ m}$.</p>
+            <p>$$ L = s \times s $$</p>
+            <p>$$ L = 9 \times 9 = 81\text{ m}^2 $$</p>
+            <p>Jadi, luas lantai aula sekolah tersebut adalah <b>$81\text{ m}^2$</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Jangan tertukar antara Keliling dan Luas!</p>
+            <p>• <b>Keliling:</b> Menjumlahkan garis tepi (Satuan: $\text{cm}$, $\text{m}$).</p>
+            <p>• <b>Luas:</b> Mengalikan dimensi permukaan (Satuan: $\text{cm}^2$, $\text{m}^2$).</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Keliling &amp; Luas Segitiga</div>
+
+        <div class="info-box">
+            <div class="box-title">📐 Teori Ringkas Segitiga</div>
+            <p>Segitiga terbentuk dari 3 sisi lurus dan 3 sudut. Alas ($a$) dan Tinggi ($t$) segitiga <b>SELALU tegak lurus</b> satu sama lain (membentuk sudut $90^\circ$).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Formula Segitiga</div>
+            <p>$$ \text{Keliling Segitiga} = a + b + c $$</p>
+            <p>$$ \text{Luas Segitiga} = \frac{a \times t}{2} \quad \text{atau} \quad \frac{1}{2} \times a \times t $$</p>
+            <p style="font-size: 8.5px;">Keterangan: $a, b, c = \text{sisi-sisi segitiga}$, $t = \text{tinggi tegak lurus}$.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Atap pramuka berbentuk segitiga sama kaki memiliki panjang alas 10 cm, tinggi 12 cm, dan panjang sisi miringnya masing-masing 13 cm. Hitunglah keliling dan luas atap tersebut!</p>
+            <p><b>Pembahasan:</b></p>
+            <p>1. Keliling (Jumlahkan semua sisi luar):</p>
+            <p>$$ K = 10 + 13 + 13 = 36\text{ cm} $$</p>
+            <p>2. Luas (Gunakan alas dan tinggi tegak):</p>
+            <p>$$ L = \frac{a \times t}{2} = \frac{10 \times 12}{2} = \frac{120}{2} = 60\text{ cm}^2 $$</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Saat menghitung Luas Segitiga, tinggi ($t$) harus yang <b>TEGAK LURUS</b> dengan alas ($a$). Sisi miring <b>TIDAK BOLEH</b> dipakai sebagai tinggi!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 3</span>
+                <span class="chapter-title">Pengukuran Sudut &amp; Bangun Datar</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. Sudut yang besarnya $135^\circ$ termasuk ke dalam jenis sudut...</p>
+            <p style="padding-left: 10px;">a. Lancip &nbsp;&nbsp;&nbsp; b. Siku-siku &nbsp;&nbsp;&nbsp; c. Tumpul &nbsp;&nbsp;&nbsp; d. Lurus</p>
+            <p>2. Sebuah persegi memiliki keliling 36 cm. Panjang sisi persegi tersebut adalah...</p>
+            <p>3. Hitunglah luas segitiga yang memiliki panjang alas 14 cm dan tinggi 8 cm!</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Taman Pak Dino berbentuk persegi panjang dengan ukuran panjang 15 meter dan lebar 10 meter. Di tengah taman tersebut dibangun kolam ikan berbentuk persegi dengan panjang sisi 4 meter. Berapakah luas sisa taman Pak Dino yang tidak tertutup kolam ikan?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>Jawaban Soal Mandiri:</b></p>
+            <p>1. $135^\circ$ terletak di antara $90^\circ$ dan $180^\circ$ = <b>c. Tumpul</b>.</p>
+            <p>2. Sisi Persegi = $\text{Keliling} \div 4 = 36 \div 4 = \mathbf{9\text{ cm}}$.</p>
+            <p>3. Luas Segitiga = $\frac{14 \times 8}{2} = \frac{112}{2} = \mathbf{56\text{ cm}^2}$.</p>
+            <p><b>Jawaban Soal HOTS:</b></p>
+            <p>• Luas Taman = $p \times l = 15 \times 10 = 150\text{ m}^2$.</p>
+            <p>• Luas Kolam = $s \times s = 4 \times 4 = 16\text{ m}^2$.</p>
+            <p>• Luas Sisa Taman = $\text{Luas Taman} - \text{Luas Kolam} = 150 - 16 = \mathbf{134\text{ m}^2}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>LUAR BIASA!</b> Kamu sudah berhasil menguasai Bab 3 Pengukuran Sudut &amp; Bangun Datar. Jangan lupa simpan berkas ini sebagai <code>kelas4-bab3.html</code> dan gabungkan ke portal utama kamu ya!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
