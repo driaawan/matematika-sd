@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boklet Matematika SD - Kelas 4 Bab 4</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS KaTeX via Cloudflare CDN (Sangat Stabil & Anti-Blokir) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #0D9488;
+            --accent: #F59E0B;
+            --warning: #EF4444;
+            --bg-body: #E2E8F0;
+            --bg-card: #FFFFFF;
+            --text-main: #1E293B;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        @page { size: A5 portrait; margin: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-container {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-home { background: var(--secondary); }
+
+        /* KARTU HALAMAN A5 PORTRAIT FLEXIBLE (ANTI-TERPOTONG) */
+        .page-card {
+            width: 148mm;
+            min-height: 208mm;
+            height: auto;
+            background: var(--bg-card);
+            padding: 7mm 9mm;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            box-sizing: border-box;
+            overflow: hidden;
+            page-break-after: always;
+            break-after: page;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .page-card:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-badge {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chapter-title { color: var(--primary); font-size: 11px; font-weight: 700; }
+        .section-title { 
+            color: var(--secondary); 
+            font-size: 10.5px; 
+            font-weight: 700; 
+            margin: 2px 0; 
+            border-left: 3px solid var(--secondary); 
+            padding-left: 5px; 
+            break-after: avoid;
+        }
+
+        p, li { 
+            font-size: 9.5px; 
+            line-height: 1.35; 
+            margin: 2px 0; 
+            overflow-wrap: break-word;
+        }
+        ul, ol { padding-left: 14px; margin: 2px 0; }
+
+        .concept-map { 
+            background-color: #F1F5F9; 
+            border-radius: 5px; 
+            padding: 5px 8px; 
+            font-family: monospace; 
+            font-size: 8.5px; 
+            white-space: pre; 
+            line-height: 1.2; 
+        }
+        .info-box { background-color: #EFF6FF; border-left: 3px solid var(--primary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .formula-box { background-color: #FEF3C7; border-left: 3px solid var(--accent); padding: 5px 8px; border-radius: 3px; text-align: center; margin: 3px 0; }
+        .example-box { background-color: #CCFBF1; border-left: 3px solid var(--secondary); padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+        .callout-box { background-color: #FEE2E2; border-left: 3px solid var(--warning); padding: 5px 8px; border-radius: 3px; font-size: 8.5px; margin: 3px 0; }
+
+        .box-title { font-weight: 700; font-size: 9.5px; margin-bottom: 2px; color: var(--text-main); text-align: left; }
+        .katex-display { margin: 2px 0 !important; }
+
+        .page-number { font-size: 8px; color: #64748B; }
+
+        .page-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8px;
+            color: #94A3B8;
+            font-weight: 500;
+            border-top: 1px solid #E2E8F0;
+            padding-top: 3px;
+        }
+
+        @media screen and (max-width: 650px) {
+            body { padding: 5px; }
+            .page-card { max-width: 148mm; width: 100% !important; min-height: auto; padding: 10px; margin-bottom: 15px; }
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .nav-container { display: none; }
+            .page-card { 
+                margin: 0; 
+                box-shadow: none; 
+                border-radius: 0; 
+                width: 148mm !important; 
+                height: 208mm !important;
+                padding: 7mm 9mm;
+            }
+            @page { size: A5 portrait; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="btn btn-home" aria-label="Kembali ke Portal Utama">🏠 Kembali ke Portal</a>
+        <button type="button" class="btn" onclick="window.print()" aria-label="Cetak Booklet">🖨️ Cetak / Simpan PDF</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 1</span>
+        </div>
+
+        <div class="section-title">1. Pengukuran Panjang &amp; Tangga Satuan Panjang</div>
+        
+        <div class="info-box">
+            <div class="box-title">📏 Teori Ringkas &amp; Tangga Satuan Panjang</div>
+            <p>Mengukur panjang adalah membandingkan panjang suatu benda dengan satuan baku (seperti meter atau sentimeter).</p>
+            <p>Untuk mengubah antar-satuan panjang, kita menggunakan Tangga Satuan Panjang:</p>
+        </div>
+
+        <div class="concept-map">[km] -> [hm] -> [dam] -> [m] -> [dm] -> [cm] -> [mm]</div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Naik &amp; Turun Tangga</div>
+            <p>• Setiap TURUN 1 tangga $\rightarrow$ Dikalikan 10 ($\times 10$)</p>
+            <p>• Setiap NAIK 1 tangga $\rightarrow$ Dibagi 10 ($\div 10$)</p>
+            <p>$$ 1\text{ km} = 1.000\text{ m} \quad \mid \quad 1\text{ m} = 100\text{ cm} \quad \mid \quad 1\text{ cm} = 10\text{ mm} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Lani memiliki pita sepanjang 3 meter. Ia memotong pita tersebut sepanjang 150 cm untuk menghias kado. Berapa cm sisa pita Lani sekarang?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah satuan meter ke cm: $3\text{ m} = 3 \times 100 = 300\text{ cm}$.</li>
+                <li>Hitung sisa pita: $300\text{ cm} - 150\text{ cm} = 150\text{ cm}$.</li>
+            </ol>
+            <p>Jadi, sisa pita Lani adalah <b>150 cm</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Sebelum melakukan operasi penjumlahan atau pengurangan pada satuan panjang, <b>PASTIKAN</b> semua satuan sudah disamakan terlebih dahulu!</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 1</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 2</span>
+        </div>
+
+        <div class="section-title">2. Pengukuran Berat &amp; Tangga Satuan Berat</div>
+
+        <div class="info-box">
+            <div class="box-title">⚖️ Teori Ringkas &amp; Tangga Satuan Berat</div>
+            <p>Satuan baku untuk mengukur berat (massa) benda adalah gram (g) dan kilogram (kg).</p>
+            <p>Tangga Satuan Berat:</p>
+        </div>
+
+        <div class="concept-map">[kg] -> [hg/ons] -> [dag] -> [g] -> [dg] -> [cg] -> [mg]</div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Hubungan Satuan Berat Khusus</div>
+            <p>• $1\text{ kg} = 10\text{ hg} = 10\text{ ons}$</p>
+            <p>• $1\text{ kg} = 1.000\text{ g}$</p>
+            <p>• $1\text{ ton} = 1.000\text{ kg}$</p>
+            <p>• $1\text{ kuintal} = 100\text{ kg}$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Ibu membeli 2 kg tepung terigu dan 500 gram gula pasir di pasar. Berapa gram total berat belanjaan Ibu?</p>
+            <p><b>Pembahasan:</b></p>
+            <ol>
+                <li>Ubah kg ke gram: $2\text{ kg} = 2 \times 1.000 = 2.000\text{ g}$.</li>
+                <li>Jumlahkan total belanjaan: $2.000\text{ g} + 500\text{ g} = 2.500\text{ g}$.</li>
+            </ol>
+            <p>Jadi, total berat belanjaan Ibu adalah <b>2.500 gram</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Ingatlah bahwa 1 Hektogram (hg) nilainya <b>SAMA DENGAN</b> 1 Ons!</p>
+            <p>$1\text{ kg} = 10\text{ ons} = 10\text{ hg}$.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 2</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 3</span>
+        </div>
+
+        <div class="section-title">3. Pembulatan Hasil Pengukuran Panjang &amp; Berat</div>
+
+        <div class="info-box">
+            <div class="box-title">🔢 Teori Ringkas Aturan Pembulatan</div>
+            <p>Saat mengukur menggunakan penggaris atau timbangan, hasil ukur sering kali berada di antara dua angka. Kita perlu melakukan pembulatan ke satuan terdekat.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Aturan Pembulatan ke Satuan Terdekat</div>
+            <p style="text-align: left;">• Jika angka di belakang koma &lt; 5 (yaitu 1, 2, 3, 4) $\rightarrow$ <b>BULATKAN KE BAWAH</b> (angka depan tetap, koma hilang).</p>
+            <p style="text-align: left;">• Jika angka di belakang koma &ge; 5 (yaitu 5, 6, 7, 8, 9) $\rightarrow$ <b>BULATKAN KE ATAS</b> (angka depan ditambah 1).</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b></p>
+            <p>a. Panjang pensil setelah diukur adalah 12,3 cm. Bulatkan ke cm terdekat!</p>
+            <p>b. Berat sekeranjang buah naga adalah 4,7 kg. Bulatkan ke kg terdekat!</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Angka di belakang koma pada 12,3 adalah 3 (&lt; 5) $\rightarrow$ Dibulatkan ke bawah menjadi <b>12 cm</b>.</p>
+            <p>b. Angka di belakang koma pada 4,7 adalah 7 (&ge; 5) $\rightarrow$ Dibulatkan ke atas menjadi <b>5 kg</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Perhatikan tepat 1 angka di belakang koma! Jangan melihat angka di posisi lebih jauh saat menentukan pembulatan ke satuan terdekat.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 3</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 4</span>
+        </div>
+
+        <div class="section-title">4. Pengumpulan Data &amp; Tabel Frekuensi</div>
+
+        <div class="info-box">
+            <div class="box-title">📊 Teori Ringkas Data &amp; Turus</div>
+            <p>Data adalah informasi yang diperoleh dari catatan, wawancara, atau pengukuran.</p>
+            <p>Untuk merapikan data acak, kita dapat menyusunnya ke dalam Tabel Frekuensi dengan bantuan Turus (tally).</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Format Turus (Tally)</div>
+            <p style="text-align: left;">Turus ditulis menggunakan garis tegak. Setiap hitungan ke-5 diikat dengan garis miring:</p>
+            <p style="text-align: left;">• 1 = | &nbsp;&nbsp;&nbsp;&nbsp; • 2 = || &nbsp;&nbsp;&nbsp;&nbsp; • 3 = ||| &nbsp;&nbsp;&nbsp;&nbsp; • 4 = |||| &nbsp;&nbsp;&nbsp;&nbsp; • 5 = |||| (satu ikat)</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Data nilai matematika 10 siswa: 80, 70, 90, 80, 70, 80, 100, 80, 90, 80. Sajikan dalam tabel frekuensi!</p>
+            <p><b>Pembahasan:</b></p>
+            <ul>
+                <li>Nilai 70: 2 siswa (Turus: ||)</li>
+                <li>Nilai 80: 5 siswa (Turus: ||||)</li>
+                <li>Nilai 90: 2 siswa (Turus: ||)</li>
+                <li>Nilai 100: 1 siswa (Turus: |)</li>
+            </ul>
+            <p>Total Siswa = $2 + 5 + 2 + 1 = 10\text{ siswa}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Coretlah data acak satu per satu saat memasukkannya ke dalam turus agar tidak ada data yang terhitung dua kali atau terlewat.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 4</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 5</span>
+        </div>
+
+        <div class="section-title">5. Membaca &amp; Menyajikan Data dalam Diagram Batang</div>
+
+        <div class="info-box">
+            <div class="box-title">📊 Teori Ringkas Diagram Batang</div>
+            <p>Diagram batang adalah tampilan data dalam bentuk persegi panjang (batang) yang tegak atau mendatar. Tinggi batang menunjukkan frekuensi/jumlah data tersebut.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Unsur Diagram Batang</div>
+            <p style="text-align: left;">• <b>Sumbu Mendatar (Horizontal):</b> Menunjukkan Jenis Data / Kategori (misal: Nilai, Hobi, Buah).</p>
+            <p style="text-align: left;">• <b>Sumbu Tegak (Vertikal):</b> Menunjukkan Jumlah / Frekuensi Data.</p>
+            <p style="text-align: left;">• <b>Lebar Batang:</b> Selalu sama dan memiliki jarak antar-batang yang seimbang.</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Berdasarkan tabel nilai siswa (Nilai 70=2, 80=5, 90=2, 100=1), tentukan:</p>
+            <p>a. Berapa siswa yang mendapat nilai tertinggi (100)?</p>
+            <p>b. Nilai berapakah yang paling banyak diperoleh siswa?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Lihat sumbu horizontal nilai 100, baca tingginya pada sumbu vertikal $\rightarrow$ <b>1 siswa</b>.</p>
+            <p>b. Cari batang tertinggi pada diagram (tinggi = 5) $\rightarrow$ <b>Nilai 80</b>.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">⚠️ AWAS KELIRU!</div>
+            <p>Skala pada sumbu tegak harus berjarak sama! Jika menggunakan kelipatan 1, 2, atau 5, pastikan jarak antar-garisnya konsisten.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 5</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 6</span>
+        </div>
+
+        <div class="section-title">6. Menganalisis &amp; Menarik Kesimpulan dari Diagram</div>
+
+        <div class="info-box">
+            <div class="box-title">🔍 Teori Ringkas Analisis Data</div>
+            <p>Menganalisis data berarti membaca informasi tersirat dari diagram, seperti menentukan nilai terbesar, nilai terkecil, selisih, dan total seluruh data.</p>
+        </div>
+
+        <div class="formula-box">
+            <div class="box-title">📐 Rumus Analisis Data</div>
+            <p>$$ \text{Selisih Data} = \text{Data Tertinggi} - \text{Data Terendah} $$</p>
+            <p>$$ \text{Total Data} = \text{Jumlah seluruh frekuensi data} $$</p>
+        </div>
+
+        <div class="example-box">
+            <div class="box-title">📝 Contoh Soal &amp; Pembahasan</div>
+            <p><b>Soal:</b> Data penjualan buah di Toko Fresh (Apel=15 kg, Jeruk=25 kg, Mangga=10 kg, Anggur=20 kg).</p>
+            <p>a. Berapa kg selisih penjualan Jeruk dan Mangga?</p>
+            <p>b. Berapa total seluruh buah yang terjual?</p>
+            <p><b>Pembahasan:</b></p>
+            <p>a. Selisih = $\text{Jeruk} - \text{Mangga} = 25\text{ kg} - 10\text{ kg} = \mathbf{15\text{ kg}}$.</p>
+            <p>b. Total = $15 + 25 + 10 + 20 = \mathbf{70\text{ kg}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">💡 TIPS CEPAT</div>
+            <p>Saat menghitung selisih, selalu kurangi angka yang <b>LEBIH BESAR</b> dengan angka yang <b>LEBIH KECIL</b>.</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 6</span>
+        </div>
+    </div>
+
+    <!-- PAGE 7 -->
+    <div class="page-card">
+        <div class="page-header">
+            <div class="header-left">
+                <span class="chapter-badge">BAB 4</span>
+                <span class="chapter-title">Pengukuran Panjang, Berat, &amp; Pengolahan Data</span>
+            </div>
+            <span class="page-number">Halaman 7</span>
+        </div>
+
+        <div class="section-title">7. Latihan Soal Evaluasi &amp; Soal HOTS</div>
+
+        <div class="example-box">
+            <div class="box-title">✏️ Latihan Soal Mandiri</div>
+            <p>1. $2\text{ km} + 300\text{ m} = \dots\text{ m}$.</p>
+            <p style="padding-left: 10px;">a. 2.300 &nbsp;&nbsp;&nbsp; b. 500 &nbsp;&nbsp;&nbsp; c. 230 &nbsp;&nbsp;&nbsp; d. 2.030</p>
+            <p>2. Hasil pengukuran berat seakar talas adalah 3,6 kg. Jika dibulatkan ke satuan kg terdekat menjadi...</p>
+            <p>3. Data hobi siswa: Melukis (6), Menari (4), Olahraga (10). Berapa total siswa seluruhnya?</p>
+        </div>
+
+        <div class="formula-box" style="text-align: left;">
+            <div class="box-title">🔥 Tantangan Soal HOTS (High Order Thinking Skills)</div>
+            <p><b>Soal:</b> Ayah membeli 2 kantong beras masing-masing beratnya 4,4 kg dan 3,8 kg. Sebelum dimasak, Ayah membulatkan berat masing-masing kantong beras ke kg terdekat. Berapakah perkiraan total berat beras yang dibeli Ayah setelah dibulatkan?</p>
+        </div>
+
+        <div class="info-box">
+            <div class="box-title">🔑 Kunci Jawaban &amp; Pembahasan</div>
+            <p><b>Jawaban Soal Mandiri:</b></p>
+            <p>1. $2\text{ km} = 2.000\text{ m} \rightarrow 2.000 + 300 = \mathbf{2.300\text{ m}}$ (a).</p>
+            <p>2. 3,6 kg dibulatkan ke atas menjadi $\mathbf{4\text{ kg}}$.</p>
+            <p>3. Total siswa = $6 + 4 + 10 = \mathbf{20\text{ siswa}}$.</p>
+            <p><b>Jawaban Soal HOTS:</b></p>
+            <p>• Kantong 1: 4,4 kg (angka belakang koma 4 &lt; 5) $\rightarrow$ dibulatkan jadi 4 kg.</p>
+            <p>• Kantong 2: 3,8 kg (angka belakang koma 8 &ge; 5) $\rightarrow$ dibulatkan jadi 4 kg.</p>
+            <p>• Total perkiraan = $4\text{ kg} + 4\text{ kg} = \mathbf{8\text{ kg}}$.</p>
+        </div>
+
+        <div class="callout-box">
+            <div class="box-title">🌟 REFLEKSI BELAJAR!</div>
+            <p><b>SELAMAT!</b> Kamu telah menyelesaikan seluruh materi Bab 4 sekaligus **MENGKHATAMKAN SELURUH MATERI MATEMATIKA KELAS 4 SD**! Siap lanjut ke materi Kelas 5 SD?</p>
+        </div>
+
+        <div class="page-footer">
+            <span>Boklet Matematika SD - Kelas 4</span>
+            <span>Hal. 7</span>
+        </div>
+    </div>
+
+    <!-- SCRIPT KATEX VIA CLOUDFLARE DI PALING BAWAH (ANTI-ERROR) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
